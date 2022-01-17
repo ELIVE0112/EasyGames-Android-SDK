@@ -486,18 +486,18 @@ protected void onCreate(Bundle savedInstanceState) {
 ### 7. Account模塊接口
 「Account」模塊中包含了與賬號相關的功能接口。
 #### 7.1 SDK UI Interface （主要適用於遊戲）
-在「Account」模塊裏所包含的接口名稱中，帶有「egls」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
+在「Account」模塊裏所包含的接口名稱中，帶有「game」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
 #### 7.1.1 egls登錄
 ```Java
-EglsPlatform.Account.eglsLogin(this, Constants.MODE_LOGIN_AUTO);
+GamePlatform.Account.gameLogin(this, Constants.MODE_LOGIN_AUTO);
 ```
 #### 7.1.2 egls切換賬號
 ```Java
-EglsPlatform.Account.eglsSwitch(this);
+GamePlatform.Account.gameSwitch(this);
 ```
 #### 7.1.3 egls用戶中心
 ```Java
-EglsPlatform.Account.eglsUserCenter(this);
+GamePlatform.Account.gameUserCenter(this);
 ```
 <details>
 <summary>7.2 SDK Lightly Interface （主要適用於應用）</summary><br />
@@ -507,20 +507,20 @@ EglsPlatform.Account.eglsUserCenter(this);
 ```Java
 // 即傳入手機號、密碼後進行登錄
 // 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
-EglsPlatform.Account.mobileLoginLightly(Activity activity, String mobile, String password)
+GamePlatform.Account.mobileLoginLightly(Activity activity, String mobile, String password)
 ```
 #### 7.2.2 郵箱登錄
 ```Java
 // 即傳入電子郵箱、密碼後進行登錄
 // 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
-EglsPlatform.Account.mailLoginLightly(Activity activity, String mail, String password)
+GamePlatform.Account.mailLoginLightly(Activity activity, String mail, String password)
 ```
 #### 7.2.3 渠道登錄
 ```Java
 // 即根據傳入的賬號類型來調用對應的渠道登錄，這裏支持谷歌、Facebook登錄
 // 響應登錄回調，返回登錄的賬號類型
 // 另外，當accountType為空時，將采取默認登錄，如果沒有最近一次的登錄記錄，則進行遊客登錄；否則選擇最近一次的登錄賬號進行登錄
-EglsPlatform.Account.channelLoginLightly(Activity activity, String accountType)
+GamePlatform.Account.channelLoginLightly(Activity activity, String accountType)
 ```
 #### 7.2.4 手機註冊
 ```Java
@@ -530,13 +530,13 @@ EglsPlatform.Account.mobileRegisterVerifyLightly(String mobile, OnSimpleActionCa
 
 // 手機註冊第二步為「手機註冊請求」，即傳入手機號、驗證碼及密碼後，請求註冊
 // 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
-EglsPlatform.Account.mobileRegisterRequestLightly(String mobile, String verificationCode, String password)
+GamePlatform.Account.mobileRegisterRequestLightly(String mobile, String verificationCode, String password)
 ```
 #### 7.2.5 郵箱註冊
 ```Java
 // 郵箱註冊第一步為「郵箱註冊驗證」，即傳入電子郵箱後，發送驗證碼到電子郵箱上
 // 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
-EglsPlatform.Account.mailRegisterVerifyLightly(String mail, OnSimpleActionCallback callback)
+GamePlatform.Account.mailRegisterVerifyLightly(String mail, OnSimpleActionCallback callback)
 
 // 郵箱註冊第二步為「郵箱註冊請求」，即傳入電子郵箱、驗證碼及密碼後，請求註冊
 // 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
@@ -547,54 +547,54 @@ EglsPlatform.Account.mailRegisterRequestLightly(String mail, String verification
 // 即根據傳入的賬號類型來調用對應的渠道註銷，當再次請求該渠道登錄時，用戶可以重新選擇賬號
 // 需要註意的是，有些渠道SDK是不提供主動註銷的邏輯接口的（比如Facebook的app登錄，如果此時手機上裝有Facebook應用，那麽需要先在應用裏切換賬號）
 // 另外，當accountType為空時，將采取默認註銷，即註銷當前所有的渠道登錄
-EglsPlatform.Account.channelLogoutLightly(String accountType) 
+GamePlatform.Account.channelLogoutLightly(String accountType) 
 ```
 #### 7.2.7 手機綁定
 ```Java
 // 手機綁定第一步為「手機綁定驗證」，即傳入手機號後，發送驗證碼到手機上
 // 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
-EglsPlatform.Account.mobileBindVerifyLightly(String mobile, OnSimpleActionCallback callback)
+GamePlatform.Account.mobileBindVerifyLightly(String mobile, OnSimpleActionCallback callback)
 
 // 手機綁定第二步為「手機綁定請求」，即傳入手機號、驗證碼及密碼後，請求綁定
 // 響應綁定回調
 // 需要註意的是，若為遊客賬號請求的綁定，在綁定成功後，遊客賬號變為手機賬號（uid、token不變）；否則即添加了一個手機登錄方式，當前登錄的賬號類型不變
 // 目前，傳入的密碼對於非遊客賬號進行的綁定，是無效的
-EglsPlatform.Account.mobileBindRequestLightly(String mobile, String verificationCode, String password) 
+GamePlatform.Account.mobileBindRequestLightly(String mobile, String verificationCode, String password) 
 ```
 #### 7.2.8 郵箱綁定
 ```Java
 // 郵箱綁定第一步為「郵箱綁定驗證」，即傳入電子郵箱後，發送驗證碼到電子郵箱上
 // 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
-EglsPlatform.Account.mailBindVerifyLightly(String mail, OnSimpleActionCallback callback) 
+GamePlatform.Account.mailBindVerifyLightly(String mail, OnSimpleActionCallback callback) 
 
 // 郵箱綁定第二步為「郵箱綁定請求」，即傳入電子郵箱、驗證碼及密碼後，請求綁定
 // 響應綁定回調
 // 需要註意的是，若為遊客賬號請求的綁定，在綁定成功後，遊客賬號變為郵箱賬號（uid、token不變）；否則即添加了一個郵箱登錄方式，當前登錄的賬號類型不變
 // 目前，傳入的密碼對於非遊客賬號進行的綁定，是無效的
-EglsPlatform.Account.mailBindRequestLightLy(String mail, String verificationCode, String password)
+GamePlatform.Account.mailBindRequestLightLy(String mail, String verificationCode, String password)
 ```
 #### 7.2.9 渠道綁定
 ```Java
 // 即根據傳入的賬號類型來調用對應的渠道綁定，這裏支持谷歌、Facebook登錄
 // 響應綁定回調
 // 需要註意的是，若為遊客賬號請求的綁定，在綁定成功後，遊客賬號變為渠道賬號（uid、token不變）；否則即添加了一個渠道登錄方式，當前登錄的賬號類型不變
-EglsPlatform.Account.channelBindLightly(Activity activity, String accountType)
+GamePlatform.Account.channelBindLightly(Activity activity, String accountType)
 ```
 #### 7.2.10 密碼修改
 ```Java
 // 即修改當前通過手機或郵箱登錄的賬號的登錄密碼
 // 響應接口裏傳入的回調，根據state狀態來識別是否修改成功，message可用於消息提示
-EglsPlatform.Account.pwdModifyLightly(String password, OnSimpleActionCallback callback)
+GamePlatform.Account.pwdModifyLightly(String password, OnSimpleActionCallback callback)
 ```
 #### 7.2.11 密碼重置
 ```Java
 // 密碼重置第一步為「密碼重置鑒權」，即傳入手機號或電子郵箱後，發送驗證碼到手機或電子郵箱上
 // 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
-EglsPlatform.Account.pwdResetCaptchaLightly(String userAccount, OnSimpleActionCallback callback) 
+GamePlatform.Account.pwdResetCaptchaLightly(String userAccount, OnSimpleActionCallback callback) 
 
 // 密碼重置第二步為「密碼重置請求」，即傳入手機號或電子郵箱、鑒權碼後，請求密碼重置
 // 響應接口裏傳入的回調，根據state狀態來識別是否重置成功，message可用於消息提示
-EglsPlatform.Account.pwdResetRequestLightly(String userAccount, String captcha, OnSimpleActionCallback callback)
+GamePlatform.Account.pwdResetRequestLightly(String userAccount, String captcha, OnSimpleActionCallback callback)
 ```
 </details>
 
@@ -603,20 +603,20 @@ EglsPlatform.Account.pwdResetRequestLightly(String userAccount, String captcha, 
 #### 7.3.1 賬號進入
 ```Java
 //在完成登錄後，當玩家角色進入到服務器或是應用用戶進入到主頁面時，需要調用該方法
-EglsPlatform.Account.onAccountEnter(this);
+GamePlatform.Account.onAccountEnter(this);
 ```
 
 ### 8 Payment模塊接口
 「Payment」模塊中包含了與支付相關的功能接口。
 #### 8.1 SDK UI Interface （主要適用於遊戲）
-在「Payment模塊接口」模塊裏所包含的接口名稱中，帶有「egls」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
+在「Payment模塊接口」模塊裏所包含的接口名稱中，帶有「game」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
 #### 8.1.1 egls支付
 ```Java
 String amount = "1.0";// 總金額
 String productId = "PDT001";// 檔位id
 String productName = "鉆石";// 檔位名稱
 String cpOrderInfo = "2SDF34DF12GH0S23234GAER5";// CP訂單信息，由接入方生成
-EglsPlatform.Payment.eglsPurchase(amount, productId, productName, cpOrderInfo, Constants.FLAG_PURCHASE_DEFAULT);
+GamePlatform.Payment.gamePurchase(amount, productId, productName, cpOrderInfo, Constants.FLAG_PURCHASE_DEFAULT);
 ```
 #### 8.1.2 egls訂閱（僅支持Google訂閱）
 ```Java
@@ -624,7 +624,7 @@ String amount = "1.0";// 總金額
 String productId = "PDT002";// 檔位id
 String productName = "月卡";// 檔位名稱
 String cpOrderInfo = "2SDF34DF12GH0S23234GAER6";// CP訂單信息，由接入方生成
-EglsPlatform.Payment.eglsSubscribe(amount, productId, productName, cpOrderInfo);
+GamePlatform.Payment.gameSubscribe(amount, productId, productName, cpOrderInfo);
 ```
 <details>
 <summary>8.2 SDK Lightly Interface （主要適用於應用）</summary><br />
@@ -636,7 +636,7 @@ String amount = "1.0";// 總金額
 String productId = "PDT001";// 檔位id
 String productName = "鉆石";// 檔位名稱
 String cpOrderInfo = "2SDF34DF12GH0S23234GAER5";// CP訂單信息，由接入方生成
-EglsPlatform.Payment.channelPurchaseLightly(this, amount, productId, productName, cpOrderInfo, Constants.FLAG_PURCHASE_DEFAULT);
+GamePlatform.Payment.channelPurchaseLightly(this, amount, productId, productName, cpOrderInfo, Constants.FLAG_PURCHASE_DEFAULT);
 ```
 #### 8.2.2 渠道訂閱（僅支持Google訂閱）
 ```Java
@@ -644,7 +644,7 @@ String amount = "1.0";// 總金額
 String productId = "PDT002";// 檔位id
 String productName = "月卡";// 檔位名稱
 String cpOrderInfo = "2SDF34DF12GH0S23234GAER6";// CP訂單信息，由接入方生成
-EglsPlatform.Payment.channelPurchaseLightly(this， amount, productId, productName, cpOrderInfo);
+GamePlatform.Payment.channelPurchaseLightly(this， amount, productId, productName, cpOrderInfo);
 ```
 </details>
 
@@ -658,20 +658,20 @@ String shareText = "";// 分享文本
 String shareImageFilePath = "";// 分享圖片（絕對路徑）
 String shareLink = "";// 分享鏈接
 boolean isTimelineCb = false;
-EglsPlatform.Social.channelShare(this, type, shareTitle, shareText, shareImageFilePath, shareLink, isTimelineCb);
+GamePlatform.Social.channelShare(this, type, shareTitle, shareText, shareImageFilePath, shareLink, isTimelineCb);
 ```
 
 ### 10. Support模塊接口
 「Support」模塊中包含了輔助相關的功能接口。
 #### 10.1 遊戲退出
 ```Java
-EglsPlatform.Support.exit();
+GamePlatform.Support.exit();
 ```
 #### 10.2 Facebook遊戲邀請
 ```Java
 String title = "Let's go!";
 String text = "Yeah!";
-EglsPlatform.Support.getFacebookHelper().requestGameInvitation(this, title, text, new FacebookHelper.FacebookGameInvitationCallback() {
+GamePlatform.Support.getFacebookHelper().requestGameInvitation(this, title, text, new FacebookHelper.FacebookGameInvitationCallback() {
 
     @Override
     public void onSuccess(List<FacebookInvitedFriend> facebookInvitedFriends) {
@@ -696,7 +696,7 @@ EglsPlatform.Support.getFacebookHelper().requestGameInvitation(this, title, text
 #### 10.3 Facebook用戶好友信息獲取
 所謂「Facebook用戶好友」，就是指使用相同app的Facebook好友，並不只是Facebook好友。目前，如果遊戲裏沒有相關功能的需求，則不建議使用該接口（該接口的使用，需要通過Facebook的登錄審核）。
 ```Java
-EglsPlatform.Support.getFacebookHelper().getUserFriends(this, new FacebookHelper.FacebookGetUserFriendsCallback() {
+GamePlatform.Support.getFacebookHelper().getUserFriends(this, new FacebookHelper.FacebookGetUserFriendsCallback() {
 
     @Override
     public void onResponse(List<FacebookUserFriend> facebookUserFriends) {
@@ -718,52 +718,52 @@ EglsPlatform.Support.getFacebookHelper().getUserFriends(this, new FacebookHelper
 AppsFlyer主要用於Global業務的數據統計，啟用該功能的做法，首先要按照上面所提到的，在AndroidManifest.xml文件中打開對應的配置。對於AppsFlyer統計功能的相關接口調用，其相關初始化部分的邏輯已經嵌入進SDK當中，因此開發者無需關心較為復雜的初始化步驟，只需根據需求，調用對應的接口即可。<br /><br />
 #### 12.1 閃屏動畫首次啟動事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_SPLASH_IMAGE, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_ONE_SPLASH_IMAGE, null);
 ```
 #### 12.2 新手任務開始事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_TUTORIAL_START, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_TUTORIAL_START, null);
 ```
 #### 12.3 新手任務完成事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_TUTORIAL_COMPLETE, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_TUTORIAL_COMPLETE, null);
 ```
 #### 12.4 創建新角色事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_NEW_CHARACTER, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_NEW_CHARACTER, null);
 ```
 #### 12.5 遊戲資源首次更新開始事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_UPDATE_START, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_ONE_UPDATE_START, null);
 ```
 #### 12.6 遊戲資源首次更新完成事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_UPDATE_COMPLETE, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_ONE_UPDATE_COMPLETE, null);
 ```
 #### 12.7 遊戲資源首次加載開始事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_LOAD_START, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_ONE_LOAD_START, null);
 ```
 #### 12.8 遊戲資源首次加載完成事件追蹤（必接）
 ```Java
-EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_LOAD_COMPLETE, null);
+GameTracker.trackEventCustom(GameTracker.EVENT_ONE_LOAD_COMPLETE, null);
 ```
 #### 12.9 自定義事件追蹤()（根據需求接入）
 ```Java
 // 有時候運營會針對具體的數據分析增加特定的事件統計，那麽請調用該接口，傳入特定的事件名稱
 // trackData的格式為json字符串，形如：{key:value,key:value,key:value...}
-EglsTracker.trackEventCustom(trackEvent, trackData);
+GameTracker.trackEventCustom(trackEvent, trackData);
 ```
 
 ### 13. 其他註意事項
 1. Google推薦的審核中，會對遊戲首次運行時所使用的必要「危險權限」的申請和使用進行檢查。SDK會主動申請「android.permission.WRITE_EXTERNAL_STORAGE」權限，但如果遊戲還另需申請其他的「危險權限」，可以在調用「EglsPlatform.initActivity()」接口前，使用「addNecessaryPermission()」接口。例如：
 ```Java
-EglsPlatform.Config.addNecessaryPermission(Manifest.permission.READ_PHONE_STATE);
-EglsPlatform.Config.addNecessaryPermission(Manifest.permission.RECORD_AUDIO);
+GamePlatform.Config.addNecessaryPermission(Manifest.permission.READ_PHONE_STATE);
+GamePlatform.Config.addNecessaryPermission(Manifest.permission.RECORD_AUDIO);
 ```
 2. 同樣也是為了適應Google推薦的審核要求，SDK在遊戲第一次安裝並啟動後，會先彈出一個關於危險權限使用的說明。SDK默認的說明只有關於SD卡權限的使用說明，如果遊戲在初始化時有使用到其他的危險權限，那麽可以在調用「EglsPlatform.initActivity()」接口前，使用如下方法來修改提示文本：
 ```Java
 // 需要註意的是，該接口是直接替換原默認文本的，所以還需要加上SD卡權限的使用說明。
 String permissionContent = "xxx";
-EglsPlatform.Config.setPermissionContent(permissionContent);
+GamePlatform.Config.setPermissionContent(permissionContent);
 ```

@@ -181,7 +181,7 @@ manifestPlaceholders = [
 ```Xml
 <!-- 請註意Application標簽中的「android:networkSecurityConfig」以及「android:requestLegacyExternalStorage」屬性的設置 -->
 </application
-    android:name="com.egls.demo.GameApplication"
+    android:name="com.easygames.demo.GameApplication"
     android:allowBackup="false"
     android:icon="@drawable/icon"
     android:label="EasyGames SDK Demo"
@@ -230,9 +230,10 @@ manifestPlaceholders = [
         android:name="EASYGAMES_PAY_IS_SANDBOX"
         android:value="${EASYGAMES_PAY_IS_SANDBOX}" />
 
+    <!-- 默認值，如有需求可更改 -->
     <meta-data
         android:name="EASYGAMES_DOMAIN"
-        android:value="passport.elive.com.tw" />
+        android:value="passport.in99.com.tw" />
     <!-- Base end -->
         
 

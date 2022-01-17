@@ -1,18 +1,18 @@
-# EGLS-Android-Game-SDK-Global-4.X.X(Client-zhCN)
-### 1. 简介
-欢迎使用 Egls Android Game SDK，这篇SDK对接文档说明适用于在**全球**（**但不包含中国大陆及韩国**）地区发行的游戏。<br/><br/>
-从4.x.x版本起，我们采用了新的账号体系，所以并不兼容旧版（即同一个账号在登录后返回的uid与3.x.x版本的不一致）。如果您的游戏曾经接过旧版本的SDK，并且将要使用4.x.x版本的SDK时，请配合我们做游戏的强更及其他必要的更新操作（详情请咨询我方运营）。
-### 2. 所需参数
-#### 2.1 EGLS_APP_ID
-由我方给游戏分配的应用id，一个游戏对应一个。
+# EasyGame Android SDK
+### 1. 簡介
+歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.942。
+
+### 2. 參數
+#### 2.1 EASYGAMES_APP_ID
+由我方分配給游戲的應用id。
 #### 2.2 google_public_key
-在Goole Play后台生成的支付公钥。
+在Goole Play商店後臺上生成的支付公鑰。
 #### 2.3 google_client_id
-在Google API后台“OAuth 2.0 客户端 ID”配置的列表中，关于“Web Client”项对应的“Client ID”参数值。
-#### 2.4 com.facebook.sdk.ApplicationId
-在Facebook后台生成的应用id。
-### 3. 环境搭建
-#### 3.1 gradle版本及库引用地址设置
+在Google API後臺上生成的谷歌登錄驗證所需的client id。
+#### 2.4 com.facebook.sdk.ApplicationId。
+在Facebook後臺上生成的應用id。
+### 3. 環境搭建
+#### 3.1 gradle版本及庫引用設置
 gradle版本为4.4，并且请在当前Project目录下的build.gralde文件中加上如下配置：
 ```gradle
 buildscript {

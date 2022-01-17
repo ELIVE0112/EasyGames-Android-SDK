@@ -49,7 +49,7 @@ android.enableD8.desugaring=true
 ```
 另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
-EGLS_SDK_VERSION=4.8.92
+EGLS_SDK_VERSION=4.8.942
 ```
 #### 3.2 lib 選擇
 針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
@@ -64,7 +64,6 @@ dependencies {
     // base begin
     api "io.github.sonicdjgh:platform:$EGLS_SDK_VERSION@aar"
     api "io.github.sonicdjgh:payment:$EGLS_SDK_VERSION@aar"
-    api "io.github.sonicdjgh:native:$EGLS_SDK_VERSION@aar"
     api "io.github.sonicdjgh:support:$EGLS_SDK_VERSION@aar"
     api 'com.android.support.constraint:constraint-layout:1.1.0'
     // base 
@@ -97,25 +96,15 @@ dependencies {
     // google end
     
     // facebook begin
-    api 'com.facebook.android:facebook-core:5.+'
-    api 'com.facebook.android:facebook-login:5.+'
-    api 'com.facebook.android:facebook-share:5.+'
+    api 'com.facebook.android:facebook-core:8.+'
+    api 'com.facebook.android:facebook-login:8.+'
+    api 'com.facebook.android:facebook-share:8.+'
     // facebook end
     
     // LINE begin
     // 如果使用 LINE 登錄，請打開下面的配置
     // api 'com.linecorp:linesdk:5.0.1'
     // LINE begin
-    
-    // mycard begin
-    // 如果使用 MyCard 支付，請打開下面的配置
-    // api files('libs/tw/MyCardPaySDK.jar')
-    // mycard end
-    
-    // gash begin
-    // 如果使用 Gash 支付，請打開下面的配置
-    // api files('libs/tw/clientsdk_product_v2.jar')
-    // gash end
 }
 
 ```
@@ -143,8 +132,8 @@ minSdkVersion = 17，targetSdkVersion = 29
 manifestPlaceholders = [
                 // base begin
                 EGLS_APP_ID              : "",// 用於SDK初始化 
-                EGLS_PUBLISHMENT_AREA    : "",// 用於SDK識別發行區，可詳見文檔附錄
-                EGLS_PAY_CHANNEL         : "",// 用於SDK識別支付方式，可詳見文檔附錄
+                EGLS_PUBLISHMENT_AREA    : "2",// 用於SDK識別發行區
+                EGLS_PAY_CHANNEL         : "2",// 用於SDK識別支付方式
                 EGLS_PAY_IS_SANDBOX      : "false",// 設為false即可
 		
 		GOOGLE_WEB_CLIENT_ID     : "",// 用於SDK的Google登錄
@@ -186,28 +175,6 @@ manifestPlaceholders = [
     android:required="false" />
 -->
 <!-- Google Play end -->
-
-
-<!-- Mycard begin -->
-<!-- 如果使用Mycard支付，請打開以下配置 -->
-<!--
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.VIBRATE" />
-<uses-permission android:name="android.permission.FLASHLIGHT" />
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-<uses-permission android:name="android.permission.READ_LOGS" />
-<uses-feature android:name="android.hardware.camera" />
-<uses-feature android:name="android.hardware.camera.autofocus" />
--->
-<!-- Mycard end -->
 ```
 請註意：以上 Permission 配置中只打開了SDK基礎功能相關的配置，如果使用到其他功能，請打開對應的 Permission 配置！
 #### 4.3 Application相關配置
@@ -217,13 +184,13 @@ manifestPlaceholders = [
     android:name="com.egls.demo.GameApplication"
     android:allowBackup="false"
     android:icon="@drawable/icon"
-    android:label="AGSDK Demo"
+    android:label="EasyGames SDK Demo"
     android:networkSecurityConfig="@xml/network_security_config"
     android:requestLegacyExternalStorage="true">
 	
     <!-- 遊戲Activity -->	
     <activity
-        android:name="com.egls.demo.GameActivity"
+        android:name="com.easygames.demo.GameActivity"
         android:configChanges="fontScale|orientation|keyboardHidden|locale|navigation|screenSize|uiMode"
         android:screenOrientation="landscape"
         android:theme="@style/EglsTheme.NoTitleBar.Fullscreen.NoAnimation" >
@@ -236,7 +203,7 @@ manifestPlaceholders = [
         <intent-filter>
             <data
                 android:host="${applicationId}"
-                android:scheme="egls${EGLS_APP_ID}" />
+                android:scheme="easygames${EASYGAMES_APP_ID}" />
 
             <action android:name="android.intent.action.VIEW" />
 
@@ -248,23 +215,23 @@ manifestPlaceholders = [
 	
     <!-- Base begin -->
     <meta-data
-        android:name="EGLS_APP_ID"
-        android:value="${EGLS_APP_ID}" />
+        android:name="EASYGAMES_APP_ID"
+        android:value="${EASYGAMES_APP_ID}" />
 	
     <meta-data
-        android:name="EGLS_PUBLISHMENT_AREA"
-        android:value="${EGLS_PUBLISHMENT_AREA}" />
+        android:name="EASYGAMES_PUBLISHMENT_AREA"
+        android:value="${EASYGAMES_PUBLISHMENT_AREA}" />
 	
     <meta-data
-        android:name="EGLS_PAY_CHANNEL"
-        android:value="${EGLS_PAY_CHANNEL}" />
+        android:name="EASYGAMES_PAY_CHANNEL"
+        android:value="${EASYGAMES_PAY_CHANNEL}" />
 	
     <meta-data
-        android:name="EGLS_PAY_IS_SANDBOX"
-        android:value="${EGLS_PAY_IS_SANDBOX}" />
+        android:name="EASYGAMES_PAY_IS_SANDBOX"
+        android:value="${EASYGAMES_PAY_IS_SANDBOX}" />
 
     <meta-data
-        android:name="EGLS_DOMAIN"
+        android:name="EASYGAMES_DOMAIN"
         android:value="passport.elive.com.tw" />
     <!-- Base end -->
         
@@ -301,7 +268,7 @@ manifestPlaceholders = [
     <!-- 如果使用Firebase雲消息推送，請打開以下配置 -->
     <!--
     <service
-        android:name="com.egls.support.google.firebase.FirebaseMesgService"
+        android:name="com.easygames.support.google.firebase.FirebaseMesgService"
         android:exported="false">
         <intent-filter>
             <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -371,155 +338,6 @@ manifestPlaceholders = [
         android:value="${LINE_CHANNEL_ID}" />
     -->
     <!-- LINE end -->
-
-
-    <!-- Mycard begin -->
-    <!-- 如果使用Mycard支付功能，請打開以下配置 -->
-    <!--
-    <activity
-        android:name="soft_world.mycard.paymentapp.ui.SplashActivity"
-        android:screenOrientation="portrait" >
-    </activity>
-    <activity
-        android:name="soft_world.mycard.paymentapp.ui.MainActivity"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="adjustPan" >
-    </activity>
-    <activity
-        android:name="soft_world.mycard.paymentapp.ui.TrainActivity"
-        android:screenOrientation="portrait" >
-    </activity>
-    <activity
-        android:name="com.google.zxing.CaptureActivity"
-        android:screenOrientation="portrait" >
-    </activity>
-    <activity
-        android:name="tw.com.mycard.paymentsdk.PSDKActivity"
-        android:screenOrientation="portrait" >
-    </activity>
-    <activity
-        android:name="soft_world.mycard.paymentapp.ui.billing.BillingWebViewActivity"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Dialog" >
-    </activity>
-    <activity
-        android:name="soft_world.mycard.paymentapp.Ecom.ATMMenuActivity"
-        android:screenOrientation="portrait" >
-    </activity>
-    <activity
-        android:name="com.xmobilepay.xpaymentlibs.XCardTypeForm"
-        android:screenOrientation="portrait" >
-    </activity>
-    <activity
-        android:name="com.xmobilepay.xpaymentlibs.PaymentErrResultForm"
-        android:screenOrientation="portrait" >
-    </activity>
-    <activity
-        android:name="com.fet.iap.activity.FetLoginActivity"
-        android:configChanges="keyboardHidden|orientation|screenSize"
-        android:theme="@android:style/Theme.Translucent.NoTitleBar"
-        android:windowSoftInputMode="adjustPan" >
-    </activity>
-    <activity android:name="com.cht.iap.api.ChtRegMainActivity" />
-    <activity android:name="com.cht.iap.api.ChtPhoneNumPayConfirmActivity" />
-    <activity android:name="com.cht.iap.api.ChtRegEInvoiceInfo" />
-    <activity android:name="com.cht.iap.api.ChtRegVerifyOTP" />
-    <activity android:name="com.cht.iap.api.ChtRegHNDataTabActivity" />
-    <activity android:name="com.cht.iap.api.ChtRegHNAccountActivity" />
-    <activity android:name="com.cht.iap.api.ChtRegMobileAuth" />
-    <activity android:name="com.cht.iap.api.ChtRegMobileHNData" />
-    <activity android:name="com.cht.iap.api.ChtTransactionAuth" />
-    <activity android:name="com.cht.iap.api.ChtRegVerifyMessage" />
-    <activity
-        android:name="com.softmobile.ui.PayPageActivity"
-        android:configChanges="orientation"
-        android:screenOrientation="portrait" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.TokenPayTypeCheckUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.CardTypeCheckUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-         android:name="com.payeasenet.token.lib.ui.TokenCreateUI"
-         android:screenOrientation="portrait"
-         android:theme="@android:style/Theme.Light.NoTitleBar" >
-    </activity>
-    <activity
-        android:name="com.payeasenet.token.lib.ui.TokenCreateResultUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.TokenPayUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEPayRelUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.TokenIntroductionUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" >
-    </activity>
-    <activity
-        android:name="com.payeasenet.token.lib.ui.TokenUnBindedUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" >
-    </activity>
-    <activity
-        android:name="com.payeasenet.token.lib.ui.MoreAboutUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEQuickPayUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEUpmpPayUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEVisaPayUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEVisaInfoUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEVisaBillInfoUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEDebitBillInfoUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEQuickInfoUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    <activity
-        android:name="com.payeasenet.token.lib.ui.PEUpmpInfoUI"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Light.NoTitleBar" />
-    -->
-    <!-- Mycard end -->
-    
-    
-    <!-- Gash begin -->
-    <!-- 如果使用Gash支付功能，請打開以下配置 -->
-    <!--
-    <activity
-        android:name="com.gashpoint.gpclientsdk.SdkActivity"
-	android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
-        android:exported="true"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-    -->
-    <!-- Gash end -->
 </application>
 ```
 
@@ -528,25 +346,25 @@ manifestPlaceholders = [
 @Override
 protected void onCreate() {
     super.onCreate();
-    EglsPlatform.onCreate(this);
+    GamePlatform.onCreate(this);
 }
 
 @Override
 protected void onResume() {
     super.onResume();
-    EglsPlatform.onResume(this);
+    GamePlatform.onResume(this);
 }
     
 @Override
 protected void onPause() {
     super.onPause();
-    EglsPlatform.onPause(this);
+    GamePlatform.onPause(this);
 }
 	
 @Override
 protected void onDestroy() {
     super.onDestroy();
-    EglsPlatform.onDestroy(this);
+    GamePlatform.onDestroy(this);
 }
 ```
 
@@ -556,8 +374,8 @@ protected void onDestroy() {
 @Override
 public void onCreate() {
     super.onCreate();
-    EglsTracker.initApplication(this);
-    EglsPlatform.initApplication(this);
+    GameTracker.initApplication(this);
+    GamePlatform.initApplication(this);
 }
 ```
 ```Java
@@ -571,9 +389,9 @@ protected void onCreate(Bundle savedInstanceState) {
         public void onHandleInit(int state, String message) {
             if (state == Constants.SDK_STATE_SUCCESS) {// 初始化成功後的處理
                 // 如果需要使用LINE登錄，請調用如下接口
-		// EglsPlatform.Config.setEnableLineSignIn(true);
+		// GamePlatform.Config.setEnableLineSignIn(true);
 		// 如果需要使用SDK懸浮窗導航欄中的登出，請調用如下接口
-		// EglsPlatform.Config.setEnableFloateMenuLogout(true);
+		// GamePlatform.Config.setEnableFloateMenuLogout(true);
             } else {// 初始化失敗後的處理
                 
             }

@@ -5,11 +5,15 @@
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID
 由我方分配給游戲的應用id。
-#### 2.2 google_public_key
+#### 2.2 EASYGAMES_PUBLISHMENT_AREA
+發行地區編號，參數值為2。
+#### 2.3 EASYGAMES_PAY_CHANNEL
+支付類型編號，參數值為2。
+#### 2.4 google_public_key
 在Goole Play商店後臺上生成的支付公鑰。
-#### 2.3 google_client_id
+#### 2.5 google_client_id
 在Google API後臺上生成的谷歌登錄驗證所需的client id。
-#### 2.4 com.facebook.sdk.ApplicationId。
+#### 2.6 com.facebook.sdk.ApplicationId
 在Facebook後臺上生成的應用id。
 ### 3. 環境搭建
 #### 3.1 gradle版本及庫引用設置

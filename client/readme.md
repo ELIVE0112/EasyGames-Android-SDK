@@ -49,7 +49,7 @@ android.enableD8.desugaring=true
 ```
 另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
-EGLS_SDK_VERSION=4.8.942
+EASYGAMES_SDK_VERSION=4.8.942
 ```
 #### 3.2 lib 選擇
 針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
@@ -62,9 +62,9 @@ repositories {
 
 dependencies {
     // base begin
-    api "io.github.sonicdjgh:platform:$EGLS_SDK_VERSION@aar"
-    api "io.github.sonicdjgh:payment:$EGLS_SDK_VERSION@aar"
-    api "io.github.sonicdjgh:support:$EGLS_SDK_VERSION@aar"
+    api "io.github.sonicdjgh:platform:$EASYGAMES_SDK_VERSION@aar"
+    api "io.github.sonicdjgh:payment:$EASYGAMES_SDK_VERSION@aar"
+    api "io.github.sonicdjgh:support:$EASYGAMES_SDK_VERSION@aar"
     api 'com.android.support.constraint:constraint-layout:1.1.0'
     // base 
     

@@ -4,7 +4,7 @@
 
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID
-由我方分配給游戲的應用id。
+由我方分配給遊戲的應用id。
 #### 2.2 EASYGAMES_PUBLISHMENT_AREA
 發行地區編號，參數值為2。
 #### 2.3 EASYGAMES_PAY_CHANNEL
@@ -17,17 +17,17 @@
 在Facebook後臺上生成的應用id。
 ### 3. 環境搭建
 #### 3.1 gradle版本及庫引用設置
-gradle版本为4.4，并且请在当前Project目录下的build.gralde文件中加上如下配置：
+gradle版本為5.6.4（僅供參考），並且請在當前Project目錄下的build.gralde文件中加上如下配置：
 ```gradle
 buildscript {
     repositories {
     	google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.4.2'
 	
-        // 如果使用Firebase云消息推送功能，请打开以下配置
+        // 如果使用Firebase雲消息推送功能，請打開以下配置 
     	// classpath 'com.google.gms:google-services:4.2.0'
     }
 }
@@ -35,25 +35,24 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
 	mavenCentral()
     }
 }
 ```
-如果使用 Firebase 云消息推送功能，请在当前游戏工程目录下的build.gradle文件中加上如下配置：
+如果使用 Firebase 雲消息推送功能，請在當前遊戲工程目錄下的build.gradle文件中加上如下配置：
 ```gradle
 apply plugin: 'com.google.gms.google-services'
 ```
-如果使用 LINE 登录，请在当前Project目录下的gradle.properties文件中加上如下配置：
+如果使用 LINE 登錄，請在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
 android.enableD8.desugaring=true
 ```
-另外，还需要在当前Project目录下的gradle.properties文件中加上如下配置：
+另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
 EGLS_SDK_VERSION=4.8.92
 ```
-#### 3.2 lib 选择
-针对于在港台地区发行的游戏，请在当前Module目录下的“build.gradle”文件里打开如下图所示的配置：<br/>
+#### 3.2 lib 選擇
+針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
 ```gradle
 repositories {
     flatDir {
@@ -86,12 +85,12 @@ dependencies {
     api 'com.google.android.gms:play-services-tasks:16.+'
     
     // googleplay begin
-    // 如果使用 GooglePlay 支付，请打开下面的配置
+    // 如果使用 GooglePlay 支付，請打開下面的配置
     // api 'com.android.billingclient:billing:3.0.2'
     // googleplay end
     
     // firebase begin
-    // 如果使用 Firebase 云消息推送，请打开下面的配置
+    // 如果使用 Firebase 雲消息推送，請打開下面的配置
     // api 'com.google.firebase:firebase-core:16.0.8'
     // api 'com.google.firebase:firebase-messaging:18.0.0'
     // firebase end
@@ -104,32 +103,32 @@ dependencies {
     // facebook end
     
     // LINE begin
-    // 如果使用 LINE 登录，请打开下面的配置
+    // 如果使用 LINE 登錄，請打開下面的配置
     // api 'com.linecorp:linesdk:5.0.1'
     // LINE begin
     
     // mycard begin
-    // 如果使用 MyCard 支付，请打开下面的配置
+    // 如果使用 MyCard 支付，請打開下面的配置
     // api files('libs/tw/MyCardPaySDK.jar')
     // mycard end
     
     // gash begin
-    // 如果使用 Gash 支付，请打开下面的配置
+    // 如果使用 Gash 支付，請打開下面的配置
     // api files('libs/tw/clientsdk_product_v2.jar')
     // gash end
 }
 
 ```
-#### 3.3 关于Unity的SDK接入
-a. 首先使用Android Studio自建一个安卓项目工程后并完成SDK的接入工作；<br/><br/>
-b. 请注意，游戏主Activity需要继承Unity的UnityPlayerActivity；<br/><br/>
-c. Google推荐对危险权限的使用有一定要求，需要加入申请权限的逻辑。但由于Unity会自动申请“AndroidManifest.xml”文件中所配置的危险权限，不便于逻辑控制。如果有需要，请在“AndroidManifest.xml”文件中的“application”标签内加入如下配置：
+#### 3.3 關於Unity的SDK接入
+a. 首先使用Android Studio自建一個安卓項目工程後並完成SDK的接入工作；<br/><br/>
+b. 請註意，遊戲主Activity需要繼承Unity的UnityPlayerActivity；<br/><br/>
+c. Google推薦對危險權限的使用有一定要求，需要加入申請權限的邏輯。但由於Unity會自動申請「AndroidManifest.xml」文件中所配置的危險權限，不便於邏輯控製。如果有需要，請在「AndroidManifest.xml」文件中的「application」標簽內加入如下配置：
 ```Xml
 <meta-data
     android:name="unityplayer.SkipPermissionsDialog"
     android:value="true" />
 ```
-d. 如果发现SDK的悬浮窗无法响应手势动作，请在“AndroidManifest.xml”文件中的“application”标签内加入如下配置：
+d. 如果發現SDK的懸浮窗無法響應手勢動作，請在「AndroidManifest.xml」文件中的「application」標簽內加入如下配置：
 ```Xml
 <meta-data 
     android:name="unityplayer.ForwardNativeEventsToDalvik" 
@@ -138,39 +137,39 @@ d. 如果发现SDK的悬浮窗无法响应手势动作，请在“AndroidManifes
 #### 3.4 其他
 minSdkVersion = 17，targetSdkVersion = 29
 ### 4. AndroidManifest.xml文件配置
-#### 4.1 AndroidManifest.xml中的参数配置
+#### 4.1 AndroidManifest.xml中的參數配置
 ```gradle
-// 在游戏Module的“build.gradle”中的“defaultConfig”里添加如下配置：
+// 在遊戲Module的「build.gradle」中的「defaultConfig」裏添加如下配置：
 manifestPlaceholders = [
                 // base begin
-                EGLS_APP_ID              : "",// 用于SDK初始化 
-                EGLS_PUBLISHMENT_AREA    : "",// 用于SDK识别发行区，可详见文档附录
-                EGLS_PAY_CHANNEL         : "",// 用于SDK识别支付方式，可详见文档附录
-                EGLS_PAY_IS_SANDBOX      : "false",// 设为false即可
+                EGLS_APP_ID              : "",// 用於SDK初始化 
+                EGLS_PUBLISHMENT_AREA    : "",// 用於SDK識別發行區，可詳見文檔附錄
+                EGLS_PAY_CHANNEL         : "",// 用於SDK識別支付方式，可詳見文檔附錄
+                EGLS_PAY_IS_SANDBOX      : "false",// 設為false即可
 		
-		GOOGLE_WEB_CLIENT_ID     : "",// 用于SDK的Google登录
-		FACEBOOK_APPLICATION_ID  : "",// 用于SDK的Facebook登录
-		LINE_CHANNEL_ID          : "",// 用于SDK的LINE登录
+		GOOGLE_WEB_CLIENT_ID     : "",// 用於SDK的Google登錄
+		FACEBOOK_APPLICATION_ID  : "",// 用於SDK的Facebook登錄
+		LINE_CHANNEL_ID          : "",// 用於SDK的LINE登錄
 		
-		// APPS_FLYER_DEV_KEY    : "",// 用于AppsFlyer统计功能初始化，如果运营没有特殊需求，这里无需添加
+		// APPS_FLYER_DEV_KEY    : "",// 用於AppsFlyer統計功能初始化，如果運營沒有特殊需求，這裏無需添加
                 // base end
 		
 		// other begin
-		GOOGLE_PLAY_PUBLIC_KEY   : "",// 用于SDK的Google Play支付，若无需求可不填
-		GOOGLE_GAME_APP_ID       : "",// 用于SDK的Google Game成就系统，若无需求可不填
+		GOOGLE_PLAY_PUBLIC_KEY   : "",// 用於SDK的Google Play支付，若無需求可不填
+		GOOGLE_GAME_APP_ID       : "",// 用於SDK的Google Game成就系統，若無需求可不填
                 // other end
         ]
 ```
 #### 4.2 Permission 配置
 ```Xml
 <!-- AppsFlyer begin -->
-<!-- 如果现在接入的安卓包是针对除Google Play以外的其他应用商店，那么此权限一定需要声明，否则要删除该权限声明 -->
+<!-- 如果現在接入的安卓包是針對除Google Play以外的其他應用商店，那麽此權限一定需要聲明，否則要刪除該權限聲明 -->
 <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
 <!-- AppsFlyer end -->
 
 
 <!-- Google Play begin -->
-<!-- 如果使用Google Play支付功能，请打开以下配置 -->
+<!-- 如果使用Google Play支付功能，請打開以下配置 -->
 <!--
 <uses-permission android:name="com.android.vending.BILLING" />
 <uses-feature
@@ -190,7 +189,7 @@ manifestPlaceholders = [
 
 
 <!-- Mycard begin -->
-<!-- 如果使用Mycard支付，请打开以下配置 -->
+<!-- 如果使用Mycard支付，請打開以下配置 -->
 <!--
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.VIBRATE" />
@@ -210,10 +209,10 @@ manifestPlaceholders = [
 -->
 <!-- Mycard end -->
 ```
-请注意：以上 Permission 配置中只打开了SDK基础功能相关的配置，如果使用到其他功能，请打开对应的 Permission 配置！
-#### 4.3 Application相关配置
+請註意：以上 Permission 配置中只打開了SDK基礎功能相關的配置，如果使用到其他功能，請打開對應的 Permission 配置！
+#### 4.3 Application相關配置
 ```Xml
-<!-- 请注意Application标签中的“android:networkSecurityConfig”以及“android:requestLegacyExternalStorage”属性的设置 -->
+<!-- 請註意Application標簽中的「android:networkSecurityConfig」以及「android:requestLegacyExternalStorage」屬性的設置 -->
 </application
     android:name="com.egls.demo.GameApplication"
     android:allowBackup="false"
@@ -222,7 +221,7 @@ manifestPlaceholders = [
     android:networkSecurityConfig="@xml/network_security_config"
     android:requestLegacyExternalStorage="true">
 	
-    <!-- 游戏Activity -->	
+    <!-- 遊戲Activity -->	
     <activity
         android:name="com.egls.demo.GameActivity"
         android:configChanges="fontScale|orientation|keyboardHidden|locale|navigation|screenSize|uiMode"
@@ -271,8 +270,8 @@ manifestPlaceholders = [
         
 
     <!-- AppsFlyer begin -->
-    <!-- 为了确保所有Install Referrer监听器可以成功监听由系统播放的referrer参数，请一定在AndroidManifest.xml中将AppsFlyer的监听器置于所有同类监听器第一位，并保证receiver tag在application tag中 -->
-    <!-- 如果已经有其他的receiver来监听“INSTALL_REFERRER”， 那么请用“MultipleInstallBroadcastReceiver” -->
+    <!-- 為了確保所有Install Referrer監聽器可以成功監聽由系統播放的referrer參數，請一定在AndroidManifest.xml中將AppsFlyer的監聽器置於所有同類監聽器第一位，並保證receiver tag在application tag中 -->
+    <!-- 如果已經有其他的receiver來監聽「INSTALL_REFERRER」， 那麽請用「MultipleInstallBroadcastReceiver」 -->
     <receiver
         android:name="com.appsflyer.SingleInstallBroadcastReceiver"
         android:exported="true" >
@@ -285,7 +284,7 @@ manifestPlaceholders = [
         android:name="appsflyer_enable"
         android:value="true" />
     
-    <!-- 如果有特殊需求修改devkey时，请打开以下配置 -->	
+    <!-- 如果有特殊需求修改devkey時，請打開以下配置 -->	
     <!--	
     <meta-data
         android:name="appsflyer_dev_key"
@@ -299,7 +298,7 @@ manifestPlaceholders = [
         android:name="google_client_id"
         android:value="${GOOGLE_WEB_CLIENT_ID}" />
 	
-    <!-- 如果使用Firebase云消息推送，请打开以下配置 -->
+    <!-- 如果使用Firebase雲消息推送，請打開以下配置 -->
     <!--
     <service
         android:name="com.egls.support.google.firebase.FirebaseMesgService"
@@ -310,30 +309,30 @@ manifestPlaceholders = [
     </service>
     -->
 	
-    <!-- 如果使用Firebase云消息推送，请打开以下配置 -->
-    <!-- Firebase云消息推送所使用的icon图案 -->
+    <!-- 如果使用Firebase雲消息推送，請打開以下配置 -->
+    <!-- Firebase雲消息推送所使用的icon圖案 -->
     <!--
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
         android:resource="@drawable/egls_push_icon" />
     -->
 	
-    <!-- 如果使用Firebase云消息推送，请打开以下配置 -->
-    <!-- Firebase云消息推送所使用的icon底色 -->
+    <!-- 如果使用Firebase雲消息推送，請打開以下配置 -->
+    <!-- Firebase雲消息推送所使用的icon底色 -->
     <!--
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_color"
         android:resource="@color/egls_push_color" />
     -->
 	
-    <!-- 如果使用Google Play Game成就功能，请打开以下配置 -->
+    <!-- 如果使用Google Play Game成就功能，請打開以下配置 -->
     <!--
     <meta-data
         android:name="com.google.android.gms.games.APP_ID"
         android:value="\0${GOOGLE_GAME_APP_ID}" />
     -->
 
-    <!-- 如果使用Google Play支付功能，请打开以下配置 -->
+    <!-- 如果使用Google Play支付功能，請打開以下配置 -->
     <!--
     <meta-data
         android:name="google_public_key"
@@ -347,14 +346,14 @@ manifestPlaceholders = [
         android:name="com.facebook.sdk.ApplicationId"
         android:value="\0${FACEBOOK_APPLICATION_ID}" />
 
-    <!--如果游戏需要开启Facebook的“USER_FRIEND”权限，请打开以下配置 -->
+    <!--如果遊戲需要開啟Facebook的「USER_FRIEND」權限，請打開以下配置 -->
     <!--
     <meta-data
         android:name="facebook_user_friends_enable"
         android:value="true" />
     -->
 						    
-    <!-- 如果游戏需要使用Facebook分享功能，请打开以下配置 -->
+    <!-- 如果遊戲需要使用Facebook分享功能，請打開以下配置 -->
     <!--
     <provider
         android:name="com.facebook.FacebookContentProvider"
@@ -365,7 +364,7 @@ manifestPlaceholders = [
 
 
     <!-- LINE begin -->
-    <!-- 如果使用 LINE 登入，请打开以下配置 -->
+    <!-- 如果使用 LINE 登入，請打開以下配置 -->
     <!--
     <meta-data
         android:name="line_channel_id"
@@ -375,7 +374,7 @@ manifestPlaceholders = [
 
 
     <!-- Mycard begin -->
-    <!-- 如果使用Mycard支付功能，请打开以下配置 -->
+    <!-- 如果使用Mycard支付功能，請打開以下配置 -->
     <!--
     <activity
         android:name="soft_world.mycard.paymentapp.ui.SplashActivity"
@@ -511,7 +510,7 @@ manifestPlaceholders = [
     
     
     <!-- Gash begin -->
-    <!-- 如果使用Gash支付功能，请打开以下配置 -->
+    <!-- 如果使用Gash支付功能，請打開以下配置 -->
     <!--
     <activity
         android:name="com.gashpoint.gpclientsdk.SdkActivity"
@@ -524,7 +523,7 @@ manifestPlaceholders = [
 </application>
 ```
 
-### 5. 基础方法实现（必接）
+### 5. 基礎方法實現（必接）
 ```Java 
 @Override
 protected void onCreate() {
@@ -553,7 +552,7 @@ protected void onDestroy() {
 
 ### 6. SDK初始化（必接）
 ```Java
-// 请在你的Application类中，按照如下进行接口的调用：
+// 請在你的Application類中，按照如下進行接口的調用：
 @Override
 public void onCreate() {
     super.onCreate();
@@ -562,7 +561,7 @@ public void onCreate() {
 }
 ```
 ```Java
-// 请在你的Activity类中，按照如下进行接口的调用：
+// 請在你的Activity類中，按照如下進行接口的調用：
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -570,286 +569,286 @@ protected void onCreate(Bundle savedInstanceState) {
 
         @Override
         public void onHandleInit(int state, String message) {
-            if (state == Constants.SDK_STATE_SUCCESS) {// 初始化成功后的处理
-                // 如果需要使用LINE登录，请调用如下接口
+            if (state == Constants.SDK_STATE_SUCCESS) {// 初始化成功後的處理
+                // 如果需要使用LINE登錄，請調用如下接口
 		// EglsPlatform.Config.setEnableLineSignIn(true);
-		// 如果需要使用SDK悬浮窗导航栏中的登出，请调用如下接口
+		// 如果需要使用SDK懸浮窗導航欄中的登出，請調用如下接口
 		// EglsPlatform.Config.setEnableFloateMenuLogout(true);
-            } else {// 初始化失败后的处理
+            } else {// 初始化失敗後的處理
                 
             }
         }
 
         @Override
-        public void onHandleAgreement(boolean isAgree) {// SDK是否同意用户协议的結果处理
+        public void onHandleAgreement(boolean isAgree) {// SDK是否同意用戶協議的結果處理
             if (isAgree) {
-                // 玩家选择同意协议后的处理
+                // 玩家選擇同意協議後的處理
             } else {
-                // 玩家选择不同意协议后的处理
+                // 玩家選擇不同意協議後的處理
             }
         }
 
         @Override
-        public void onHandleLogin(int state, String token, String uid, String accountType, String nickName, String message) {// SDK登录的結果处理
+        public void onHandleLogin(int state, String token, String uid, String accountType, String nickName, String message) {// SDK登錄的結果處理
             switch (state) {
-                case Constants.SDK_STATE_SUCCESS:// 登录成功后的处理
-                    // accountType = "0"时，表示游客账号登录
-                    // accountType = "1"时，表示EGLS账号登录
-                    // accountType = "2"时，表示Google账号登录
-                    // accountType = "3"时，表示Facebook账号登录
+                case Constants.SDK_STATE_SUCCESS:// 登錄成功後的處理
+                    // accountType = "0"時，表示遊客賬號登錄
+                    // accountType = "1"時，表示EGLS賬號登錄
+                    // accountType = "2"時，表示Google賬號登錄
+                    // accountType = "3"時，表示Facebook賬號登錄
                     break;
-                case Constants.SDK_STATE_CANCEL:// 登录取消后的处理
+                case Constants.SDK_STATE_CANCEL:// 登錄取消後的處理
                     break;
-                case Constants.SDK_STATE_ERROR:// 登录失败后的处理
+                case Constants.SDK_STATE_ERROR:// 登錄失敗後的處理
                     break;
             }
         }
 	
 	@Override
         public void onHandleLogout() {
-	    // 只有当点击悬浮窗中登出按钮后才会触发
+	    // 只有當點擊懸浮窗中登出按鈕後才會觸發
         }
 
         @Override
-        public void onHandleChannelBind(int state, String accountType, String nickName, String message) {// SDK绑定的結果处理
+        public void onHandleChannelBind(int state, String accountType, String nickName, String message) {// SDK綁定的結果處理
             switch (state) {
-                case Constants.SDK_STATE_SUCCESS:// 绑定成功后的处理
+                case Constants.SDK_STATE_SUCCESS:// 綁定成功後的處理
                     break;
-                case Constants.SDK_STATE_CANCEL:// 绑定取消后的处理
+                case Constants.SDK_STATE_CANCEL:// 綁定取消後的處理
                     break;
-                case Constants.SDK_STATE_ERROR:// 绑定失败后的处理
+                case Constants.SDK_STATE_ERROR:// 綁定失敗後的處理
                     break;
             }
         }
 
         @Override
-        public void onHandleTokenFailure() {// SDK登录token失效的结果处理（需要游戏实现返回到登录页面的逻辑）
+        public void onHandleTokenFailure() {// SDK登錄token失效的結果處理（需要遊戲實現返回到登錄頁面的邏輯）
 
         }
 
         @Override
-        public void onHandlePurchase(int state, TradeInfo tradeInfo, String message) {// SDK支付的結果处理
+        public void onHandlePurchase(int state, TradeInfo tradeInfo, String message) {// SDK支付的結果處理
             switch (state) {
-                case Constants.SDK_STATE_SUCCESS:// 支付完成后的处理（仅表示客户端支付操作完成，最终要以服务器的通知为准）
+                case Constants.SDK_STATE_SUCCESS:// 支付完成後的處理（僅表示客戶端支付操作完成，最終要以服務器的通知為準）
                     break;
-                case Constants.SDK_STATE_CANCEL:// 支付取消后的处理
+                case Constants.SDK_STATE_CANCEL:// 支付取消後的處理
                     break;
-                case Constants.SDK_STATE_ERROR:// 支付失败后的处理
+                case Constants.SDK_STATE_ERROR:// 支付失敗後的處理
                     break;
             }
         }
 
         @Override
-        public void onHandleShare(int state, int type, String message) {// SDK分享的結果处理
+        public void onHandleShare(int state, int type, String message) {// SDK分享的結果處理
             switch (state) {
-                case Constants.SDK_STATE_SUCCESS:// 分享成功后的处理
-                    // 当type为Constants.TYPE_SHARE_FACEBOOK时，表示Facebook分享
-                    // 当type为Constants.TYPE_SHARE_LINE时，表示LINE分享
+                case Constants.SDK_STATE_SUCCESS:// 分享成功後的處理
+                    // 當type為Constants.TYPE_SHARE_FACEBOOK時，表示Facebook分享
+                    // 當type為Constants.TYPE_SHARE_LINE時，表示LINE分享
                     break;
-                case Constants.SDK_STATE_CANCEL:// 分享失成功的处理
+                case Constants.SDK_STATE_CANCEL:// 分享失成功的處理
                     break;
-                case Constants.SDK_STATE_ERROR:// 分享失败后的处理
+                case Constants.SDK_STATE_ERROR:// 分享失敗後的處理
                     break;
             }
         }
 
         @Override
-        public void onHandleExit(boolean isExit) {// SDK退出游戏的結果处理（该方法只针对游戏调用SDK的"EglsPlatform.Support.exit()"接口的响应）
+        public void onHandleExit(boolean isExit) {// SDK退出遊戲的結果處理（該方法只針對遊戲調用SDK的"EglsPlatform.Support.exit()"接口的響應）
             if (isExit) {
-                // 玩家选择退出后的处理
+                // 玩家選擇退出後的處理
             } else {
-                // 玩家选择继续游戏后的处理
+                // 玩家選擇繼續遊戲後的處理
             }
         }
     });
 }
 ```
 
-### 7. Account模块接口
-“Account”模块中包含了与账号相关的功能接口。
-#### 7.1 SDK UI Interface （主要适用于游戏）
-在“Account”模块里所包含的接口名称中，带有“egls”词缀的接口，在调用时，会根据业务功能自身需求，来展示所需要的UI。
-#### 7.1.1 egls登录
+### 7. Account模塊接口
+「Account」模塊中包含了與賬號相關的功能接口。
+#### 7.1 SDK UI Interface （主要適用於遊戲）
+在「Account」模塊裏所包含的接口名稱中，帶有「egls」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
+#### 7.1.1 egls登錄
 ```Java
 EglsPlatform.Account.eglsLogin(this, Constants.MODE_LOGIN_AUTO);
 ```
-#### 7.1.2 egls切换账号
+#### 7.1.2 egls切換賬號
 ```Java
 EglsPlatform.Account.eglsSwitch(this);
 ```
-#### 7.1.3 egls用户中心
+#### 7.1.3 egls用戶中心
 ```Java
 EglsPlatform.Account.eglsUserCenter(this);
 ```
 <details>
-<summary>7.2 SDK Lightly Interface （主要适用于应用）</summary><br />
+<summary>7.2 SDK Lightly Interface （主要適用於應用）</summary><br />
 	
-在“Account”模块里所包含的接口名称中，带有“Lightly”词缀的接口，在调用时，不会显示SDK自身集成的相关UI。
-#### 7.2.1 手机登录 
+在「Account」模塊裏所包含的接口名稱中，帶有「Lightly」詞綴的接口，在調用時，不會顯示SDK自身集成的相關UI。
+#### 7.2.1 手機登錄 
 ```Java
-// 即传入手机号、密码后进行登录
-// 响应登录回调，账号类型为：Constants.TYPE_USER_ACCOUNT_EGLS
+// 即傳入手機號、密碼後進行登錄
+// 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
 EglsPlatform.Account.mobileLoginLightly(Activity activity, String mobile, String password)
 ```
-#### 7.2.2 邮箱登录
+#### 7.2.2 郵箱登錄
 ```Java
-// 即传入电子邮箱、密码后进行登录
-// 响应登录回调，账号类型为：Constants.TYPE_USER_ACCOUNT_EGLS
+// 即傳入電子郵箱、密碼後進行登錄
+// 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
 EglsPlatform.Account.mailLoginLightly(Activity activity, String mail, String password)
 ```
-#### 7.2.3 渠道登录
+#### 7.2.3 渠道登錄
 ```Java
-// 即根据传入的账号类型来调用对应的渠道登录，这里支持谷歌、Facebook登录
-// 响应登录回调，返回登录的账号类型
-// 另外，当accountType为空时，将采取默认登录，如果没有最近一次的登录记录，则进行游客登录；否则选择最近一次的登录账号进行登录
+// 即根據傳入的賬號類型來調用對應的渠道登錄，這裏支持谷歌、Facebook登錄
+// 響應登錄回調，返回登錄的賬號類型
+// 另外，當accountType為空時，將采取默認登錄，如果沒有最近一次的登錄記錄，則進行遊客登錄；否則選擇最近一次的登錄賬號進行登錄
 EglsPlatform.Account.channelLoginLightly(Activity activity, String accountType)
 ```
-#### 7.2.4 手机注册
+#### 7.2.4 手機註冊
 ```Java
-// 手机注册第一步为“手机注册验证”，即传入手机号后，发送验证码到手机上
-// 响应接口里传入的回调，根据state状态来识别是否发送成功，message可用于消息提示
+// 手機註冊第一步為「手機註冊驗證」，即傳入手機號後，發送驗證碼到手機上
+// 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
 EglsPlatform.Account.mobileRegisterVerifyLightly(String mobile, OnSimpleActionCallback callback)
 
-// 手机注册第二步为“手机注册请求”，即传入手机号、验证码及密码后，请求注册
-// 响应登录回调，账号类型为：Constants.TYPE_USER_ACCOUNT_EGLS
+// 手機註冊第二步為「手機註冊請求」，即傳入手機號、驗證碼及密碼後，請求註冊
+// 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
 EglsPlatform.Account.mobileRegisterRequestLightly(String mobile, String verificationCode, String password)
 ```
-#### 7.2.5 邮箱注册
+#### 7.2.5 郵箱註冊
 ```Java
-// 邮箱注册第一步为“邮箱注册验证”，即传入电子邮箱后，发送验证码到电子邮箱上
-// 响应接口里传入的回调，根据state状态来识别是否发送成功，message可用于消息提示
+// 郵箱註冊第一步為「郵箱註冊驗證」，即傳入電子郵箱後，發送驗證碼到電子郵箱上
+// 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
 EglsPlatform.Account.mailRegisterVerifyLightly(String mail, OnSimpleActionCallback callback)
 
-// 邮箱注册第二步为“邮箱注册请求”，即传入电子邮箱、验证码及密码后，请求注册
-// 响应登录回调，账号类型为：Constants.TYPE_USER_ACCOUNT_EGLS
+// 郵箱註冊第二步為「郵箱註冊請求」，即傳入電子郵箱、驗證碼及密碼後，請求註冊
+// 響應登錄回調，賬號類型為：Constants.TYPE_USER_ACCOUNT_EGLS
 EglsPlatform.Account.mailRegisterRequestLightly(String mail, String verificationCode, String password)
 ```
-#### 7.2.6 渠道注销
+#### 7.2.6 渠道註銷
 ```Java
-// 即根据传入的账号类型来调用对应的渠道注销，当再次请求该渠道登录时，用户可以重新选择账号
-// 需要注意的是，有些渠道SDK是不提供主动注销的逻辑接口的（比如Facebook的app登录，如果此时手机上装有Facebook应用，那么需要先在应用里切换账号）
-// 另外，当accountType为空时，将采取默认注销，即注销当前所有的渠道登录
+// 即根據傳入的賬號類型來調用對應的渠道註銷，當再次請求該渠道登錄時，用戶可以重新選擇賬號
+// 需要註意的是，有些渠道SDK是不提供主動註銷的邏輯接口的（比如Facebook的app登錄，如果此時手機上裝有Facebook應用，那麽需要先在應用裏切換賬號）
+// 另外，當accountType為空時，將采取默認註銷，即註銷當前所有的渠道登錄
 EglsPlatform.Account.channelLogoutLightly(String accountType) 
 ```
-#### 7.2.7 手机绑定
+#### 7.2.7 手機綁定
 ```Java
-// 手机绑定第一步为“手机绑定验证”，即传入手机号后，发送验证码到手机上
-// 响应接口里传入的回调，根据state状态来识别是否发送成功，message可用于消息提示
+// 手機綁定第一步為「手機綁定驗證」，即傳入手機號後，發送驗證碼到手機上
+// 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
 EglsPlatform.Account.mobileBindVerifyLightly(String mobile, OnSimpleActionCallback callback)
 
-// 手机绑定第二步为“手机绑定请求”，即传入手机号、验证码及密码后，请求绑定
-// 响应绑定回调
-// 需要注意的是，若为游客账号请求的绑定，在绑定成功后，游客账号变为手机账号（uid、token不变）；否则即添加了一个手机登录方式，当前登录的账号类型不变
-// 目前，传入的密码对于非游客账号进行的绑定，是无效的
+// 手機綁定第二步為「手機綁定請求」，即傳入手機號、驗證碼及密碼後，請求綁定
+// 響應綁定回調
+// 需要註意的是，若為遊客賬號請求的綁定，在綁定成功後，遊客賬號變為手機賬號（uid、token不變）；否則即添加了一個手機登錄方式，當前登錄的賬號類型不變
+// 目前，傳入的密碼對於非遊客賬號進行的綁定，是無效的
 EglsPlatform.Account.mobileBindRequestLightly(String mobile, String verificationCode, String password) 
 ```
-#### 7.2.8 邮箱绑定
+#### 7.2.8 郵箱綁定
 ```Java
-// 邮箱绑定第一步为“邮箱绑定验证”，即传入电子邮箱后，发送验证码到电子邮箱上
-// 响应接口里传入的回调，根据state状态来识别是否发送成功，message可用于消息提示
+// 郵箱綁定第一步為「郵箱綁定驗證」，即傳入電子郵箱後，發送驗證碼到電子郵箱上
+// 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
 EglsPlatform.Account.mailBindVerifyLightly(String mail, OnSimpleActionCallback callback) 
 
-// 邮箱绑定第二步为“邮箱绑定请求”，即传入电子邮箱、验证码及密码后，请求绑定
-// 响应绑定回调
-// 需要注意的是，若为游客账号请求的绑定，在绑定成功后，游客账号变为邮箱账号（uid、token不变）；否则即添加了一个邮箱登录方式，当前登录的账号类型不变
-// 目前，传入的密码对于非游客账号进行的绑定，是无效的
+// 郵箱綁定第二步為「郵箱綁定請求」，即傳入電子郵箱、驗證碼及密碼後，請求綁定
+// 響應綁定回調
+// 需要註意的是，若為遊客賬號請求的綁定，在綁定成功後，遊客賬號變為郵箱賬號（uid、token不變）；否則即添加了一個郵箱登錄方式，當前登錄的賬號類型不變
+// 目前，傳入的密碼對於非遊客賬號進行的綁定，是無效的
 EglsPlatform.Account.mailBindRequestLightLy(String mail, String verificationCode, String password)
 ```
-#### 7.2.9 渠道绑定
+#### 7.2.9 渠道綁定
 ```Java
-// 即根据传入的账号类型来调用对应的渠道绑定，这里支持谷歌、Facebook登录
-// 响应绑定回调
-// 需要注意的是，若为游客账号请求的绑定，在绑定成功后，游客账号变为渠道账号（uid、token不变）；否则即添加了一个渠道登录方式，当前登录的账号类型不变
+// 即根據傳入的賬號類型來調用對應的渠道綁定，這裏支持谷歌、Facebook登錄
+// 響應綁定回調
+// 需要註意的是，若為遊客賬號請求的綁定，在綁定成功後，遊客賬號變為渠道賬號（uid、token不變）；否則即添加了一個渠道登錄方式，當前登錄的賬號類型不變
 EglsPlatform.Account.channelBindLightly(Activity activity, String accountType)
 ```
-#### 7.2.10 密码修改
+#### 7.2.10 密碼修改
 ```Java
-// 即修改当前通过手机或邮箱登录的账号的登录密码
-// 响应接口里传入的回调，根据state状态来识别是否修改成功，message可用于消息提示
+// 即修改當前通過手機或郵箱登錄的賬號的登錄密碼
+// 響應接口裏傳入的回調，根據state狀態來識別是否修改成功，message可用於消息提示
 EglsPlatform.Account.pwdModifyLightly(String password, OnSimpleActionCallback callback)
 ```
-#### 7.2.11 密码重置
+#### 7.2.11 密碼重置
 ```Java
-// 密码重置第一步为“密码重置鉴权”，即传入手机号或电子邮箱后，发送验证码到手机或电子邮箱上
-// 响应接口里传入的回调，根据state状态来识别是否发送成功，message可用于消息提示
+// 密碼重置第一步為「密碼重置鑒權」，即傳入手機號或電子郵箱後，發送驗證碼到手機或電子郵箱上
+// 響應接口裏傳入的回調，根據state狀態來識別是否發送成功，message可用於消息提示
 EglsPlatform.Account.pwdResetCaptchaLightly(String userAccount, OnSimpleActionCallback callback) 
 
-// 密码重置第二步为“密码重置请求”，即传入手机号或电子邮箱、鉴权码后，请求密码重置
-// 响应接口里传入的回调，根据state状态来识别是否重置成功，message可用于消息提示
+// 密碼重置第二步為「密碼重置請求」，即傳入手機號或電子郵箱、鑒權碼後，請求密碼重置
+// 響應接口裏傳入的回調，根據state狀態來識別是否重置成功，message可用於消息提示
 EglsPlatform.Account.pwdResetRequestLightly(String userAccount, String captcha, OnSimpleActionCallback callback)
 ```
 </details>
 
 
 ### 7.3 Other Interface
-#### 7.3.1 账号进入
+#### 7.3.1 賬號進入
 ```Java
-//在完成登录后，当玩家角色进入到服务器或是应用用户进入到主页面时，需要调用该方法
+//在完成登錄後，當玩家角色進入到服務器或是應用用戶進入到主頁面時，需要調用該方法
 EglsPlatform.Account.onAccountEnter(this);
 ```
 
-### 8 Payment模块接口
-“Payment”模块中包含了与支付相关的功能接口。
-#### 8.1 SDK UI Interface （主要适用于游戏）
-在“Payment模块接口”模块里所包含的接口名称中，带有“egls”词缀的接口，在调用时，会根据业务功能自身需求，来展示所需要的UI。
+### 8 Payment模塊接口
+「Payment」模塊中包含了與支付相關的功能接口。
+#### 8.1 SDK UI Interface （主要適用於遊戲）
+在「Payment模塊接口」模塊裏所包含的接口名稱中，帶有「egls」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
 #### 8.1.1 egls支付
 ```Java
-String amount = "1.0";// 总金额
-String productId = "PDT001";// 档位id
-String productName = "钻石";// 档位名称
-String cpOrderInfo = "2SDF34DF12GH0S23234GAER5";// CP订单信息，由接入方生成
+String amount = "1.0";// 總金額
+String productId = "PDT001";// 檔位id
+String productName = "鉆石";// 檔位名稱
+String cpOrderInfo = "2SDF34DF12GH0S23234GAER5";// CP訂單信息，由接入方生成
 EglsPlatform.Payment.eglsPurchase(amount, productId, productName, cpOrderInfo, Constants.FLAG_PURCHASE_DEFAULT);
 ```
-#### 8.1.2 egls订阅（仅支持Google订阅）
+#### 8.1.2 egls訂閱（僅支持Google訂閱）
 ```Java
-String amount = "1.0";// 总金额
-String productId = "PDT002";// 档位id
-String productName = "月卡";// 档位名称
-String cpOrderInfo = "2SDF34DF12GH0S23234GAER6";// CP订单信息，由接入方生成
+String amount = "1.0";// 總金額
+String productId = "PDT002";// 檔位id
+String productName = "月卡";// 檔位名稱
+String cpOrderInfo = "2SDF34DF12GH0S23234GAER6";// CP訂單信息，由接入方生成
 EglsPlatform.Payment.eglsSubscribe(amount, productId, productName, cpOrderInfo);
 ```
 <details>
-<summary>8.2 SDK Lightly Interface （主要适用于应用）</summary><br />
+<summary>8.2 SDK Lightly Interface （主要適用於應用）</summary><br />
 	
-在“Payment模块接口”模块里所包含的接口名称中，带有“Lightly”词缀的接口，在调用时，不会显示SDK自身集成的相关UI。
+在「Payment模塊接口」模塊裏所包含的接口名稱中，帶有「Lightly」詞綴的接口，在調用時，不會顯示SDK自身集成的相關UI。
 #### 8.2.1 渠道支付
 ```Java
-String amount = "1.0";// 总金额
-String productId = "PDT001";// 档位id
-String productName = "钻石";// 档位名称
-String cpOrderInfo = "2SDF34DF12GH0S23234GAER5";// CP订单信息，由接入方生成
+String amount = "1.0";// 總金額
+String productId = "PDT001";// 檔位id
+String productName = "鉆石";// 檔位名稱
+String cpOrderInfo = "2SDF34DF12GH0S23234GAER5";// CP訂單信息，由接入方生成
 EglsPlatform.Payment.channelPurchaseLightly(this, amount, productId, productName, cpOrderInfo, Constants.FLAG_PURCHASE_DEFAULT);
 ```
-#### 8.2.2 渠道订阅（仅支持Google订阅）
+#### 8.2.2 渠道訂閱（僅支持Google訂閱）
 ```Java
-String amount = "1.0";// 总金额
-String productId = "PDT002";// 档位id
-String productName = "月卡";// 档位名称
-String cpOrderInfo = "2SDF34DF12GH0S23234GAER6";// CP订单信息，由接入方生成
+String amount = "1.0";// 總金額
+String productId = "PDT002";// 檔位id
+String productName = "月卡";// 檔位名稱
+String cpOrderInfo = "2SDF34DF12GH0S23234GAER6";// CP訂單信息，由接入方生成
 EglsPlatform.Payment.channelPurchaseLightly(this， amount, productId, productName, cpOrderInfo);
 ```
 </details>
 
-### 9. Social模块接口
-“Social”模块中包含了与社交相关的功能接口。
+### 9. Social模塊接口
+「Social」模塊中包含了與社交相關的功能接口。
 #### 9.1 渠道分享
 ```Java
 int type = Constants.TYPE_SHARE_FACEBOOK;
-String shareTitle = "";// 分享标题
+String shareTitle = "";// 分享標題
 String shareText = "";// 分享文本
-String shareImageFilePath = "";// 分享图片（绝对路径）
-String shareLink = "";// 分享链接
+String shareImageFilePath = "";// 分享圖片（絕對路徑）
+String shareLink = "";// 分享鏈接
 boolean isTimelineCb = false;
 EglsPlatform.Social.channelShare(this, type, shareTitle, shareText, shareImageFilePath, shareLink, isTimelineCb);
 ```
 
-### 10. Support模块接口
-“Support”模块中包含了辅助相关的功能接口。
-#### 10.1 游戏退出
+### 10. Support模塊接口
+「Support」模塊中包含了輔助相關的功能接口。
+#### 10.1 遊戲退出
 ```Java
 EglsPlatform.Support.exit();
 ```
-#### 10.2 Facebook游戏邀请
+#### 10.2 Facebook遊戲邀請
 ```Java
 String title = "Let's go!";
 String text = "Yeah!";
@@ -858,9 +857,9 @@ EglsPlatform.Support.getFacebookHelper().requestGameInvitation(this, title, text
     @Override
     public void onSuccess(List<FacebookInvitedFriend> facebookInvitedFriends) {
 	for (FacebookInvitedFriend friend : facebookInvitedFriends) {
-            // friend.getNickName() 邀请好友的昵称
-	    // friend.getUid() 邀请好友的uid
-     	    // friend.getPicUrl() 邀请好友的头像地址
+            // friend.getNickName() 邀請好友的昵稱
+	    // friend.getUid() 邀請好友的uid
+     	    // friend.getPicUrl() 邀請好友的頭像地址
 	}
     }
 
@@ -875,98 +874,77 @@ EglsPlatform.Support.getFacebookHelper().requestGameInvitation(this, title, text
     }
 });
 ```
-#### 10.3 Facebook用户好友信息获取
-所谓“Facebook用户好友”，就是指使用相同app的Facebook好友，并不只是Facebook好友。目前，如果游戏里没有相关功能的需求，则不建议使用该接口（该接口的使用，需要通过Facebook的登录审核）。
+#### 10.3 Facebook用戶好友信息獲取
+所謂「Facebook用戶好友」，就是指使用相同app的Facebook好友，並不只是Facebook好友。目前，如果遊戲裏沒有相關功能的需求，則不建議使用該接口（該接口的使用，需要通過Facebook的登錄審核）。
 ```Java
 EglsPlatform.Support.getFacebookHelper().getUserFriends(this, new FacebookHelper.FacebookGetUserFriendsCallback() {
 
     @Override
     public void onResponse(List<FacebookUserFriend> facebookUserFriends) {
 	for (FacebookUserFriend friend : facebookUserFriends) {
-	    // friend.getNickName() 用户好友的昵称
-	    // friend.getUid() 用户好友的uid
-     	    // friend.getPicUrl() 用户好友的头像地址
+	    // friend.getNickName() 用戶好友的昵稱
+	    // friend.getUid() 用戶好友的uid
+     	    // friend.getPicUrl() 用戶好友的頭像地址
 	}
     }
 });
 ```
 
-### 11. Firebase云消息推送（选接）
-当有需要使用Firebase的云消息推送时，首先请在游戏项目的“/res/drawable”目录下，添加一张名为“egls_push_icon”的图片。然后，除了按照对接文档中“3.1”、“3.4”和“4.4”的说明进行配置以外，还需要从Google后台下载一个名为“google-services.json”的文件（该文件由我方运营提供），并将该文件放在当前游戏Module工程目录下，如下图所示：<br/>
+### 11. Firebase雲消息推送（選接）
+當有需要使用Firebase的雲消息推送時，首先請在遊戲項目的「/res/drawable」目錄下，添加一張名為「egls_push_icon」的圖片。然後，除了按照對接文檔中「3.1」、「3.4」和「4.4」的說明進行配置以外，還需要從Google後臺下載一個名為「google-services.json」的文件（該文件由我方運營提供），並將該文件放在當前遊戲Module工程目錄下，如下圖所示：<br/>
 ![image](https://github.com/sonicdjgh/egls-android-game-sdk-release-studio/blob/master/res/S4001.png)<br/>
 
 
-### 12. AppsFlyer数据统计（根据运营需求对接）
-AppsFlyer主要用于Global业务的数据统计，启用该功能的做法，首先要按照上面所提到的，在AndroidManifest.xml文件中打开对应的配置。对于AppsFlyer统计功能的相关接口调用，其相关初始化部分的逻辑已经嵌入进SDK当中，因此开发者无需关心较为复杂的初始化步骤，只需根据需求，调用对应的接口即可。<br /><br />
-#### 12.1 闪屏动画首次启动事件追踪（必接）
+### 12. AppsFlyer數據統計（根據運營需求對接）
+AppsFlyer主要用於Global業務的數據統計，啟用該功能的做法，首先要按照上面所提到的，在AndroidManifest.xml文件中打開對應的配置。對於AppsFlyer統計功能的相關接口調用，其相關初始化部分的邏輯已經嵌入進SDK當中，因此開發者無需關心較為復雜的初始化步驟，只需根據需求，調用對應的接口即可。<br /><br />
+#### 12.1 閃屏動畫首次啟動事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_SPLASH_IMAGE, null);
 ```
-#### 12.2 新手任务开始事件追踪（必接）
+#### 12.2 新手任務開始事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_TUTORIAL_START, null);
 ```
-#### 12.3 新手任务完成事件追踪（必接）
+#### 12.3 新手任務完成事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_TUTORIAL_COMPLETE, null);
 ```
-#### 12.4 创建新角色事件追踪（必接）
+#### 12.4 創建新角色事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_NEW_CHARACTER, null);
 ```
-#### 12.5 游戏资源首次更新开始事件追踪（必接）
+#### 12.5 遊戲資源首次更新開始事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_UPDATE_START, null);
 ```
-#### 12.6 游戏资源首次更新完成事件追踪（必接）
+#### 12.6 遊戲資源首次更新完成事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_UPDATE_COMPLETE, null);
 ```
-#### 12.7 游戏资源首次加载开始事件追踪（必接）
+#### 12.7 遊戲資源首次加載開始事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_LOAD_START, null);
 ```
-#### 12.8 游戏资源首次加载完成事件追踪（必接）
+#### 12.8 遊戲資源首次加載完成事件追蹤（必接）
 ```Java
 EglsTracker.trackEventCustom(EglsTracker.EVENT_ONE_LOAD_COMPLETE, null);
 ```
-#### 12.9 自定义事件追踪()（根据需求接入）
+#### 12.9 自定義事件追蹤()（根據需求接入）
 ```Java
-// 有时候运营会针对具体的数据分析增加特定的事件统计，那么请调用该接口，传入特定的事件名称
-// trackData的格式为json字符串，形如：{key:value,key:value,key:value...}
+// 有時候運營會針對具體的數據分析增加特定的事件統計，那麽請調用該接口，傳入特定的事件名稱
+// trackData的格式為json字符串，形如：{key:value,key:value,key:value...}
 EglsTracker.trackEventCustom(trackEvent, trackData);
 ```
 
-### 13. 其他注意事项
-1. Google推荐的审核中，会对游戏首次运行时所使用的必要“危险权限”的申请和使用进行检查。SDK会主动申请“android.permission.WRITE_EXTERNAL_STORAGE”权限，但如果游戏还另需申请其他的“危险权限”，可以在调用“EglsPlatform.initActivity()”接口前，使用“addNecessaryPermission()”接口。例如：
+### 13. 其他註意事項
+1. Google推薦的審核中，會對遊戲首次運行時所使用的必要「危險權限」的申請和使用進行檢查。SDK會主動申請「android.permission.WRITE_EXTERNAL_STORAGE」權限，但如果遊戲還另需申請其他的「危險權限」，可以在調用「EglsPlatform.initActivity()」接口前，使用「addNecessaryPermission()」接口。例如：
 ```Java
 EglsPlatform.Config.addNecessaryPermission(Manifest.permission.READ_PHONE_STATE);
 EglsPlatform.Config.addNecessaryPermission(Manifest.permission.RECORD_AUDIO);
 ```
-2. 同样也是为了适应Google推荐的审核要求，SDK在游戏第一次安装并启动后，会先弹出一个关于危险权限使用的说明。SDK默认的说明只有关于SD卡权限的使用说明，如果游戏在初始化时有使用到其他的危险权限，那么可以在调用“EglsPlatform.initActivity()”接口前，使用如下方法来修改提示文本：
+2. 同樣也是為了適應Google推薦的審核要求，SDK在遊戲第一次安裝並啟動後，會先彈出一個關於危險權限使用的說明。SDK默認的說明只有關於SD卡權限的使用說明，如果遊戲在初始化時有使用到其他的危險權限，那麽可以在調用「EglsPlatform.initActivity()」接口前，使用如下方法來修改提示文本：
 ```Java
-// 需要注意的是，该接口是直接替换原默认文本的，所以还需要加上SD卡权限的使用说明。
+// 需要註意的是，該接口是直接替換原默認文本的，所以還需要加上SD卡權限的使用說明。
 String permissionContent = "xxx";
 EglsPlatform.Config.setPermissionContent(permissionContent);
 ```
-### 附表 - publishmentArea
-publishmentArea | value
----|---
-中国大陆 | 1
-港奥台地区 | 2
-韩国 | 3
-日本 | 4
-美国 | 5
-俄罗斯 | 6
-泰国 | 7
-越南 | 8
-印度尼西亚 | 9
-新加坡 | 10
-
-### 附表 - payChannel
-payChannel | value
----|---
-Google Play | 2
-Mycard | 3
-OneStore | 4
-Gash | 5

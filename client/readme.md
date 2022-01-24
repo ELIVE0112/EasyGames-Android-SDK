@@ -246,18 +246,18 @@ manifestPlaceholders = [
         
 
     <!-- AppsFlyer begin -->
-    <!-- 如果使用 GooglePlay 支付，請打開下面的配置 -->
+    <!-- 如果使用 AppsFlyer 事件追蹤，請打開下面的配置 -->
     <!--
     <meta-data
         android:name="appsflyer_enable"
         android:value="true" />
-    
+    -->
+
     <!-- 如果有特殊需求修改devkey時，請打開以下配置 -->	
     <!--	
     <meta-data
         android:name="appsflyer_dev_key"
         android:value="${APPS_FLYER_DEV_KEY}" />
-    -->
     -->
     <!-- AppsFlyer end -->
 

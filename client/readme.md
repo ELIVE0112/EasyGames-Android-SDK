@@ -10,7 +10,7 @@
 #### 2.3 EASYGAMES_PAY_CHANNEL
 支付類型，參數值為2。
 #### 2.4 EASYGAMES_TRACK_KEY
-數據追蹤的公鑰。
+由我方分配的事件追蹤的公鑰。
 #### 2.5 google_public_key
 在Goole Play商店後臺上生成的支付公鑰。
 #### 2.6 google_client_id
@@ -51,7 +51,7 @@ android.enableD8.desugaring=true
 ```
 另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
-EASYGAMES_SDK_VERSION=4.8.942
+EASYGAMES_SDK_VERSION=4.8.943
 ```
 #### 3.2 lib 選擇
 針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
@@ -136,6 +136,7 @@ manifestPlaceholders = [
                 EGLS_APP_ID              : "",// 用於SDK初始化 
                 EGLS_PUBLISHMENT_AREA    : "2",// 用於SDK識別發行區
                 EGLS_PAY_CHANNEL         : "2",// 用於SDK識別支付方式
+		EASYGAMES_TRACK_KEY	 : "",// 用於SDK事件追蹤初始化
                 EGLS_PAY_IS_SANDBOX      : "false",// 設為false即可
 		
 		GOOGLE_WEB_CLIENT_ID     : "",// 用於SDK的Google登錄
@@ -227,6 +228,10 @@ manifestPlaceholders = [
     <meta-data
         android:name="EASYGAMES_PAY_CHANNEL"
         android:value="${EASYGAMES_PAY_CHANNEL}" />
+
+    <meta-data
+        android:name="EASYGAMES_TRACK_KEY"
+        android:value="${EASYGAMES_TRACK_KEY}" />
 	
     <meta-data
         android:name="EASYGAMES_PAY_IS_SANDBOX"

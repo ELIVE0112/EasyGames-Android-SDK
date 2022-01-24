@@ -1,6 +1,6 @@
 # EasyGame Android SDK
 ### 1. 簡介
-歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.944。
+歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.945。
 
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID
@@ -51,7 +51,7 @@ android.enableD8.desugaring=true
 ```
 另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
-EASYGAMES_SDK_VERSION=4.8.944
+EASYGAMES_SDK_VERSION=4.8.945
 ```
 #### 3.2 lib 選擇
 針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
@@ -348,6 +348,7 @@ manifestPlaceholders = [
 @Override
 protected void onCreate() {
     super.onCreate();
+    GameTracker.onCreate(this);
     GamePlatform.onCreate(this);
 }
 

@@ -71,6 +71,7 @@ dependencies {
     // base 
     
     // appsflyer begin
+    // 如果使用 AppsFlyer 事件追蹤，請打開下面的配置
     api 'com.appsflyer:af-android-sdk:4+@aar'
     api 'com.android.installreferrer:installreferrer:1.0'
     // appsflyer end
@@ -245,16 +246,8 @@ manifestPlaceholders = [
         
 
     <!-- AppsFlyer begin -->
-    <!-- 為了確保所有Install Referrer監聽器可以成功監聽由系統播放的referrer參數，請一定在AndroidManifest.xml中將AppsFlyer的監聽器置於所有同類監聽器第一位，並保證receiver tag在application tag中 -->
-    <!-- 如果已經有其他的receiver來監聽「INSTALL_REFERRER」， 那麽請用「MultipleInstallBroadcastReceiver」 -->
-    <receiver
-        android:name="com.appsflyer.SingleInstallBroadcastReceiver"
-        android:exported="true" >
-        <intent-filter>
-            <action android:name="com.android.vending.INSTALL_REFERRER" />
-        </intent-filter>
-    </receiver>
-    
+    <!-- 如果使用 GooglePlay 支付，請打開下面的配置 -->
+    <!--
     <meta-data
         android:name="appsflyer_enable"
         android:value="true" />
@@ -264,6 +257,7 @@ manifestPlaceholders = [
     <meta-data
         android:name="appsflyer_dev_key"
         android:value="${APPS_FLYER_DEV_KEY}" />
+    -->
     -->
     <!-- AppsFlyer end -->
 

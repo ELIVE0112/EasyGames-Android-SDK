@@ -133,11 +133,11 @@ minSdkVersion = 17，targetSdkVersion = 30
 // 在遊戲Module的「build.gradle」中的「defaultConfig」裏添加如下配置：
 manifestPlaceholders = [
                 // base begin
-                EGLS_APP_ID              : "",// 用於SDK初始化 
-                EGLS_PUBLISHMENT_AREA    : "2",// 用於SDK識別發行區
-                EGLS_PAY_CHANNEL         : "2",// 用於SDK識別支付方式
+                EASYGAMES_APP_ID              : "",// 用於SDK初始化 
+                EASYGAMES_PUBLISHMENT_AREA    : "2",// 用於SDK識別發行區
+                EASYGAMES_PAY_CHANNEL         : "2",// 用於SDK識別支付方式
 		EASYGAMES_TRACK_KEY	 : "",// 用於SDK事件追蹤初始化
-                EGLS_PAY_IS_SANDBOX      : "false",// 設為false即可
+                EASYGAMES_PAY_IS_SANDBOX      : "false",// 設為false即可
 		
 		GOOGLE_WEB_CLIENT_ID     : "",// 用於SDK的Google登錄
 		FACEBOOK_APPLICATION_ID  : "",// 用於SDK的Facebook登錄

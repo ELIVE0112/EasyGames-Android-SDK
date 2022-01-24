@@ -8,6 +8,7 @@
 #### 2.2 EASYGAMES_PUBLISHMENT_AREA
 發行地區編號，參數值為2。
 #### 2.3 EASYGAMES_PAY_CHANNEL
+支付類型，參數值為2。
 #### 2.4 EASYGAMES_TRACK_KEY
 數據追蹤的公鑰。
 #### 2.5 google_public_key

@@ -748,7 +748,7 @@ GameTracker.getAppsFlyerHelper().trackEventOneLoadStart();
 ```
 #### 12.8 遊戲資源首次加載完成事件追蹤（必接）
 ```Java
-GameTracker.getAppsFlyerHelper().trackEventOneLoadStart();
+GameTracker.getAppsFlyerHelper().trackEventOneLoadComplete();
 ```
 #### 12.9 自定義事件追蹤()（根據需求接入）
 ```Java

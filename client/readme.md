@@ -756,16 +756,3 @@ GameTracker.getAppsFlyerHelper().trackEventOneLoadComplete();
 // data的格式為json字符串，形如：{key:value,key:value,key:value...}
 GameTracker.getAppsFlyerHelper().trackEventCustom(name, data);
 ```
-
-### 13. 其他註意事項
-1. Google推薦的審核中，會對遊戲首次運行時所使用的必要「危險權限」的申請和使用進行檢查。SDK會主動申請「android.permission.WRITE_EXTERNAL_STORAGE」權限，但如果遊戲還另需申請其他的「危險權限」，可以在調用「EglsPlatform.initActivity()」接口前，使用「addNecessaryPermission()」接口。例如：
-```Java
-GamePlatform.Config.addNecessaryPermission(Manifest.permission.READ_PHONE_STATE);
-GamePlatform.Config.addNecessaryPermission(Manifest.permission.RECORD_AUDIO);
-```
-2. 同樣也是為了適應Google推薦的審核要求，SDK在遊戲第一次安裝並啟動後，會先彈出一個關於危險權限使用的說明。SDK默認的說明只有關於SD卡權限的使用說明，如果遊戲在初始化時有使用到其他的危險權限，那麽可以在調用「GamePlatform.initActivity()」接口前，使用如下方法來修改提示文本：
-```Java
-// 需要註意的是，該接口是直接替換原默認文本的，所以還需要加上SD卡權限的使用說明。
-String permissionContent = "xxx";
-GamePlatform.Config.setPermissionContent(permissionContent);
-```

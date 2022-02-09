@@ -1,6 +1,6 @@
 # EasyGame Android SDK
 ### 1. 簡介
-歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.945。
+歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.948。
 
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID
@@ -51,7 +51,7 @@ android.enableD8.desugaring=true
 ```
 另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
-EASYGAMES_SDK_VERSION=4.8.945
+EASYGAMES_SDK_VERSION=4.8.948
 ```
 #### 3.2 lib 選擇
 針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
@@ -489,15 +489,15 @@ protected void onCreate(Bundle savedInstanceState) {
 「Account」模塊中包含了與賬號相關的功能接口。
 #### 7.1 SDK UI Interface （主要適用於遊戲）
 在「Account」模塊裏所包含的接口名稱中，帶有「game」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
-#### 7.1.1 egls登錄
+#### 7.1.1 登錄
 ```Java
 GamePlatform.Account.gameLogin(this, Constants.MODE_LOGIN_AUTO);
 ```
-#### 7.1.2 egls切換賬號
+#### 7.1.2 切換賬號
 ```Java
 GamePlatform.Account.gameSwitch(this);
 ```
-#### 7.1.3 egls用戶中心
+#### 7.1.3 用戶中心
 ```Java
 GamePlatform.Account.gameUserCenter(this);
 ```
@@ -612,7 +612,7 @@ GamePlatform.Account.onAccountEnter(this);
 「Payment」模塊中包含了與支付相關的功能接口。
 #### 8.1 SDK UI Interface （主要適用於遊戲）
 在「Payment模塊接口」模塊裏所包含的接口名稱中，帶有「game」詞綴的接口，在調用時，會根據業務功能自身需求，來展示所需要的UI。
-#### 8.1.1 egls支付
+#### 8.1.1 支付
 ```Java
 String amount = "1.0";// 總金額
 String productId = "PDT001";// 檔位id
@@ -620,7 +620,7 @@ String productName = "鉆石";// 檔位名稱
 String cpOrderInfo = "2SDF34DF12GH0S23234GAER5";// CP訂單信息，由接入方生成
 GamePlatform.Payment.gamePurchase(amount, productId, productName, cpOrderInfo, Constants.FLAG_PURCHASE_DEFAULT);
 ```
-#### 8.1.2 egls訂閱（僅支持Google訂閱）
+#### 8.1.2 訂閱（僅支持Google訂閱）
 ```Java
 String amount = "1.0";// 總金額
 String productId = "PDT002";// 檔位id
@@ -720,41 +720,41 @@ GamePlatform.Support.getFacebookHelper().getUserFriends(this, new FacebookHelper
 AppsFlyer主要用於Global業務的數據統計，啟用該功能的做法，首先要按照上面所提到的，在AndroidManifest.xml文件中打開對應的配置。對於AppsFlyer統計功能的相關接口調用，其相關初始化部分的邏輯已經嵌入進SDK當中，因此開發者無需關心較為復雜的初始化步驟，只需根據需求，調用對應的接口即可。<br /><br />
 #### 12.1 閃屏動畫首次啟動事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_ONE_SPLASH_IMAGE, null);
+GameTracker.getAppsFlyerHelper().trackEventOneSplashImage();
 ```
 #### 12.2 新手任務開始事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_TUTORIAL_START, null);
+GameTracker.getAppsFlyerHelper().trackEventTutorialStart();
 ```
 #### 12.3 新手任務完成事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_TUTORIAL_COMPLETE, null);
+GameTracker.getAppsFlyerHelper().trackEventTutorialComplete();
 ```
 #### 12.4 創建新角色事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_NEW_CHARACTER, null);
+GameTracker.getAppsFlyerHelper().trackEventNewCharacter();
 ```
 #### 12.5 遊戲資源首次更新開始事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_ONE_UPDATE_START, null);
+GameTracker.getAppsFlyerHelper().trackEventOneUpdateStart();
 ```
 #### 12.6 遊戲資源首次更新完成事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_ONE_UPDATE_COMPLETE, null);
+GameTracker.getAppsFlyerHelper().trackEventOneUpdateComplete();
 ```
 #### 12.7 遊戲資源首次加載開始事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_ONE_LOAD_START, null);
+GameTracker.getAppsFlyerHelper().trackEventOneLoadStart();
 ```
 #### 12.8 遊戲資源首次加載完成事件追蹤（必接）
 ```Java
-GameTracker.trackEventCustom(GameTracker.EVENT_ONE_LOAD_COMPLETE, null);
+GameTracker.getAppsFlyerHelper().trackEventOneLoadStart();
 ```
 #### 12.9 自定義事件追蹤()（根據需求接入）
 ```Java
 // 有時候運營會針對具體的數據分析增加特定的事件統計，那麽請調用該接口，傳入特定的事件名稱
-// trackData的格式為json字符串，形如：{key:value,key:value,key:value...}
-GameTracker.trackEventCustom(trackEvent, trackData);
+// data的格式為json字符串，形如：{key:value,key:value,key:value...}
+GameTracker.getAppsFlyerHelper().trackEventCustom(name, data);
 ```
 
 ### 13. 其他註意事項

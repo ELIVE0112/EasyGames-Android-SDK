@@ -17,6 +17,10 @@
 在Google API後臺上生成的谷歌登錄驗證所需的client id。
 #### 2.7 com.facebook.sdk.ApplicationId
 在Facebook後臺上生成的應用id。
+#### 2.8 fb_login_protocol_scheme
+用于Facebook的网页响应应用。
+#### 2.9 facebook_client_token
+用于Facebook事件统计。
 ### 3. 環境搭建
 #### 3.1 gradle版本及庫引用設置
 gradle版本為5.6.4（僅供參考），並且請在當前Project目錄下的build.gralde文件中加上如下配置：
@@ -142,6 +146,8 @@ manifestPlaceholders = [
 		
 		GOOGLE_WEB_CLIENT_ID     : "",// 用於SDK的Google登錄
 		FACEBOOK_APPLICATION_ID  : "",// 用於SDK的Facebook登錄
+		ACEBOOK_LOGIN_PROTOCOL_SCHEME: "",// 用于Facebook的网页响应应用
+                FACEBOOK_CLIENT_TOKEN    : "",// 用于fb事件统计
 		LINE_CHANNEL_ID          : "",// 用於SDK的LINE登錄
 		
 		// APPS_FLYER_DEV_KEY    : "",// 用於AppsFlyer統計功能初始化，如果運營沒有特殊需求，這裏無需添加
@@ -152,6 +158,11 @@ manifestPlaceholders = [
 		GOOGLE_GAME_APP_ID       : "",// 用於SDK的Google Game成就系統，若無需求可不填
                 // other end
         ]
+	
+	// Facebook参数相关的配置
+	resValue("string", "facebook_app_id", manifestPlaceholders.FACEBOOK_APPLICATION_ID)
+        resValue("string", "fb_login_protocol_scheme", manifestPlaceholders.FACEBOOK_LOGIN_PROTOCOL_SCHEME)
+        resValue("string", "facebook_client_token", manifestPlaceholders.FACEBOOK_CLIENT_TOKEN)
 ```
 #### 4.2 Permission 配置
 ```Xml
@@ -198,21 +209,14 @@ manifestPlaceholders = [
         android:configChanges="fontScale|orientation|keyboardHidden|locale|navigation|screenSize|uiMode"
         android:screenOrientation="landscape"
         android:theme="@style/EglsTheme.NoTitleBar.Fullscreen.NoAnimation" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
+        
+	<intent-filter>
+      	    <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        <!-- DeepLink begin -->
-        <intent-filter>
-            <data
-                android:host="${applicationId}"
-                android:scheme="easygames${EASYGAMES_APP_ID}" />
-
-            <action android:name="android.intent.action.VIEW" />
-
-            <category android:name="android.intent.category.DEFAULT" />
+            <!-- Facebook 网页响应应用 begin -->
             <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="@string/fb_login_protocol_scheme" />
+            <!-- Facebook 网页响应应用 end -->
         </intent-filter>
         <!-- DeepLink end -->
     </activity>
@@ -313,7 +317,11 @@ manifestPlaceholders = [
     <!-- Facebook begin -->
     <meta-data
         android:name="com.facebook.sdk.ApplicationId"
-        android:value="\0${FACEBOOK_APPLICATION_ID}" />
+        android:value="@string/facebook_app_id" />
+
+    <meta-data
+        android:name="com.facebook.sdk.ClientToken"
+        android:value="@string/facebook_client_token" />
 
     <!--如果遊戲需要開啟Facebook的「USER_FRIEND」權限，請打開以下配置 -->
     <!--

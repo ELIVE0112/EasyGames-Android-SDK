@@ -207,6 +207,7 @@ manifestPlaceholders = [
     <activity
         android:name="com.easygames.demo.GameActivity"
         android:configChanges="fontScale|orientation|keyboardHidden|locale|navigation|screenSize|uiMode"
+	android:exported="true"
         android:screenOrientation="landscape"
         android:theme="@style/EglsTheme.NoTitleBar.Fullscreen.NoAnimation" >
         
@@ -217,6 +218,7 @@ manifestPlaceholders = [
 
 	<!-- Facebook 网页响应应用 begin -->
         <intent-filter>
+	    <action android:name="android.intent.action.VIEW" /> 
 	    <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="@string/fb_login_protocol_scheme" />

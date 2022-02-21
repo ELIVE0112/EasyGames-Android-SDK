@@ -11,16 +11,16 @@
 支付類型，參數值為2。
 #### 2.4 EASYGAMES_TRACK_KEY
 由我方分配的事件追蹤的公鑰。
-#### 2.5 google_public_key
+#### 2.5 GOOGLE_PLAY_PUBLIC_KEY
 在Goole Play商店後臺上生成的支付公鑰。
-#### 2.6 google_client_id
+#### 2.6 GOOGLE_WEB_CLIENT_ID
 在Google API後臺上生成的谷歌登錄驗證所需的client id。
-#### 2.7 com.facebook.sdk.ApplicationId
+#### 2.7 FACEBOOK_APPLICATION_ID
 在Facebook後臺上生成的應用id。
-#### 2.8 fb_login_protocol_scheme
+#### 2.8 FACEBOOK_LOGIN_PROTOCOL_SCHEME
 用于Facebook的网页响应应用。
-#### 2.9 facebook_client_token
-用于Facebook事件统计。
+#### 2.9 FACEBOOK_CLIENT_TOKEN
+用于Facebook的应用事件。
 ### 3. 環境搭建
 #### 3.1 gradle版本及庫引用設置
 gradle版本為5.6.4（僅供參考），並且請在當前Project目錄下的build.gralde文件中加上如下配置：
@@ -146,7 +146,7 @@ manifestPlaceholders = [
 		
 		GOOGLE_WEB_CLIENT_ID     : "",// 用於SDK的Google登錄
 		FACEBOOK_APPLICATION_ID  : "",// 用於SDK的Facebook登錄
-		ACEBOOK_LOGIN_PROTOCOL_SCHEME: "",// 用于Facebook的网页响应应用
+		FACEBOOK_LOGIN_PROTOCOL_SCHEME: "",// 用于Facebook的网页响应应用
                 FACEBOOK_CLIENT_TOKEN    : "",// 用于fb事件统计
 		LINE_CHANNEL_ID          : "",// 用於SDK的LINE登錄
 		

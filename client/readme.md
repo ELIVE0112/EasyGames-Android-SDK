@@ -217,6 +217,7 @@ manifestPlaceholders = [
 
 	<!-- Facebook 网页响应应用 begin -->
         <intent-filter>
+	    <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="@string/fb_login_protocol_scheme" />
         </intent-filter>

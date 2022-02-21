@@ -211,14 +211,16 @@ manifestPlaceholders = [
         android:theme="@style/EglsTheme.NoTitleBar.Fullscreen.NoAnimation" >
         
 	<intent-filter>
-      	    <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-            <!-- Facebook 网页响应应用 begin -->
+        </intent-filter>
+
+	<!-- Facebook 网页响应应用 begin -->
+        <intent-filter>
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="@string/fb_login_protocol_scheme" />
-            <!-- Facebook 网页响应应用 end -->
         </intent-filter>
-        <!-- DeepLink end -->
+	<!-- Facebook 网页响应应用 end -->
     </activity>
 	
     <!-- Base begin -->

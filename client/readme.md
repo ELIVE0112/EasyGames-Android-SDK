@@ -195,7 +195,7 @@ manifestPlaceholders = [
 #### 4.3 Application相關配置
 ```Xml
 <!-- 請註意Application標簽中的「android:networkSecurityConfig」以及「android:requestLegacyExternalStorage」屬性的設置 -->
-</application
+<application
     android:name="com.easygames.demo.GameApplication"
     android:allowBackup="false"
     android:icon="@drawable/icon"

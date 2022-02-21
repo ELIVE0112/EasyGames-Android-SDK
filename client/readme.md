@@ -147,7 +147,7 @@ manifestPlaceholders = [
 		GOOGLE_WEB_CLIENT_ID     : "",// 用於SDK的Google登錄
 		FACEBOOK_APPLICATION_ID  : "",// 用於SDK的Facebook登錄
 		FACEBOOK_LOGIN_PROTOCOL_SCHEME: "",// 用于Facebook的网页响应应用
-                FACEBOOK_CLIENT_TOKEN    : "",// 用于fb事件统计
+                FACEBOOK_CLIENT_TOKEN    : "",// 用于fb应用事件
 		LINE_CHANNEL_ID          : "",// 用於SDK的LINE登錄
 		
 		// APPS_FLYER_DEV_KEY    : "",// 用於AppsFlyer統計功能初始化，如果運營沒有特殊需求，這裏無需添加

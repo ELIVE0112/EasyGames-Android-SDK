@@ -358,6 +358,7 @@ manifestPlaceholders = [
 
 ### 5. 基礎方法實現（必接）
 ```Java 
+// 請在你的Activity類中，按照如下進行接口的調用：
 @Override
 protected void onCreate() {
     super.onCreate();

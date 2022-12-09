@@ -81,14 +81,14 @@ dependencies {
     // appsflyer end
 
     // google begin
-    api 'com.google.android.gms:play-services-auth:16.+'
-    api 'com.google.android.gms:play-services-base:16.+'
-    api 'com.google.android.gms:play-services-basement:16.+'
-    api 'com.google.android.gms:play-services-drive:16.+'
-    api 'com.google.android.gms:play-services-games:16.+'
-    api 'com.google.android.gms:play-services-gcm:16.+'
-    api 'com.google.android.gms:play-services-iid:16.+'
-    api 'com.google.android.gms:play-services-tasks:16.+'
+    api 'com.google.android.gms:play-services-auth:19.2.0'
+    api 'com.google.android.gms:play-services-base:17.6.0'
+    api 'com.google.android.gms:play-services-basement:17.6.0'
+    api 'com.google.android.gms:play-services-drive:17.0.0'
+    api 'com.google.android.gms:play-services-games:21.0.0'
+    api 'com.google.android.gms:play-services-gcm:17.0.0'
+    api 'com.google.android.gms:play-services-iid:17.0.0'
+    api 'com.google.android.gms:play-services-tasks:17.2.1'
     
     // googleplay begin
     // 如果使用 GooglePlay 支付，請打開下面的配置

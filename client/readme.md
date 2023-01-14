@@ -95,8 +95,7 @@ dependencies {
     // google base end
     
     // googleplay begin
-    // 如果使用 GooglePlay 支付，請打開下面的配置
-    // api 'com.android.billingclient:billing:4.1.0'
+    api 'com.android.billingclient:billing:4.1.0'
     // googleplay end
     
     // google firebase begin

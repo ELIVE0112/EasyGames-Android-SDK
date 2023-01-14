@@ -1,6 +1,6 @@
 # EasyGame Android SDK
 ### 1. 簡介
-歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9500。
+歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9500（androidx）。
 
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID

@@ -1,6 +1,6 @@
 # EasyGame Android SDK
 ### 1. 簡介
-歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9410。
+歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9500。
 
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID
@@ -28,11 +28,12 @@ gradle版本為5.6.4（僅供參考），並且請在當前Project目錄下的bu
 buildscript {
     repositories {
     	google()
+	jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-	
+        classpath 'com.android.tools.build:gradle:4.0.1'
+	classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.10.2"
         // 如果使用Firebase雲消息推送功能，請打開以下配置 
     	// classpath 'com.google.gms:google-services:4.2.0'
     }
@@ -41,6 +42,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+	jcenter()
 	mavenCentral()
     }
 }
@@ -55,7 +57,7 @@ android.enableD8.desugaring=true
 ```
 另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
-EASYGAMES_SDK_VERSION=4.8.9410
+EASYGAMES_SDK_VERSION=4.8.9500
 ```
 #### 3.2 lib 選擇
 針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
@@ -71,13 +73,14 @@ dependencies {
     api "io.github.sonicdjgh:platform:$EASYGAMES_SDK_VERSION@aar"
     api "io.github.sonicdjgh:payment:$EASYGAMES_SDK_VERSION@aar"
     api "io.github.sonicdjgh:support:$EASYGAMES_SDK_VERSION@aar"
-    api 'com.android.support.constraint:constraint-layout:1.1.0'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
     // base 
     
     // appsflyer begin
     // 如果使用 AppsFlyer 事件追蹤，請打開下面的配置
-    api 'com.appsflyer:af-android-sdk:4+@aar'
-    api 'com.android.installreferrer:installreferrer:1.0'
+    // api 'com.appsflyer:af-android-sdk:6.3.2'
+    // api 'com.android.installreferrer:installreferrer:1.0'
     // appsflyer end
 
     // google begin
@@ -103,9 +106,9 @@ dependencies {
     // google end
     
     // facebook begin
-    api 'com.facebook.android:facebook-core:8.+'
-    api 'com.facebook.android:facebook-login:8.+'
-    api 'com.facebook.android:facebook-share:8.+'
+    api 'com.facebook.android:facebook-core:12.3.0'
+    api 'com.facebook.android:facebook-login:12.3.0'
+    api 'com.facebook.android:facebook-share:12.3.0'
     // facebook end
     
     // LINE begin

@@ -83,7 +83,7 @@ dependencies {
     // api 'com.android.installreferrer:installreferrer:1.0'
     // appsflyer end
 
-    // google begin
+    // google base begin
     api 'com.google.android.gms:play-services-auth:19.2.0'
     api 'com.google.android.gms:play-services-base:17.6.0'
     api 'com.google.android.gms:play-services-basement:17.6.0'
@@ -92,18 +92,18 @@ dependencies {
     api 'com.google.android.gms:play-services-gcm:17.0.0'
     api 'com.google.android.gms:play-services-iid:17.0.0'
     api 'com.google.android.gms:play-services-tasks:17.2.1'
+    // google base end
     
     // googleplay begin
     // 如果使用 GooglePlay 支付，請打開下面的配置
     // api 'com.android.billingclient:billing:4.1.0'
     // googleplay end
     
-    // firebase begin
+    // google firebase begin
     // 如果使用 Firebase 雲消息推送，請打開下面的配置
     // api 'com.google.firebase:firebase-core:16.0.8'
     // api 'com.google.firebase:firebase-messaging:18.0.0'
-    // firebase end
-    // google end
+    // google firebase end
     
     // facebook begin
     api 'com.facebook.android:facebook-core:12.3.0'

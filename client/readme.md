@@ -75,7 +75,7 @@ dependencies {
     api "io.github.sonicdjgh:support:$EASYGAMES_SDK_VERSION@aar"
     api 'androidx.constraintlayout:constraintlayout:1.1.3'
     api 'androidx.legacy:legacy-support-v4:1.0.0'
-    // base 
+    // base end
     
     // appsflyer begin
     // 如果使用 AppsFlyer 事件追蹤，請打開下面的配置

@@ -94,9 +94,9 @@ dependencies {
     api 'com.google.android.gms:play-services-tasks:17.2.1'
     // google base end
     
-    // googleplay begin
+    // google billing begin
     api 'com.android.billingclient:billing:4.1.0'
-    // googleplay end
+    // google billing end
     
     // google firebase begin
     // 如果使用 Firebase 雲消息推送，請打開下面的配置

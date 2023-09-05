@@ -1,6 +1,6 @@
 # EasyGame Android SDK
 ### 1. 簡介
-歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9502（androidx）。
+歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9503（androidx）。
 
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID
@@ -28,7 +28,6 @@ gradle版本為6.1.1（僅供參考），並且請在當前Project目錄下的bu
 buildscript {
     repositories {
     	google()
-	jcenter()
         mavenCentral()
     }
     dependencies {
@@ -42,7 +41,6 @@ buildscript {
 allprojects {
     repositories {
         google()
-	jcenter()
 	mavenCentral()
     }
 }
@@ -57,7 +55,7 @@ android.enableD8.desugaring=true
 ```
 另外，還需要在當前Project目錄下的gradle.properties文件中加上如下配置：
 ```gradle
-EASYGAMES_SDK_VERSION=4.8.9500
+EASYGAMES_SDK_VERSION=4.8.9503
 ```
 #### 3.2 lib 選擇
 針對於在港臺地區發行的遊戲，請在當前Module目錄下的「build.gradle」文件裏打開如下圖所示的配置：<br/>
@@ -75,6 +73,7 @@ dependencies {
     api "io.github.sonicdjgh:support:$EASYGAMES_SDK_VERSION@aar"
     api 'androidx.constraintlayout:constraintlayout:1.1.3'
     api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'androidx.browser:browser:1.3.0'
     // base end
     
     // appsflyer begin
@@ -112,7 +111,7 @@ dependencies {
     
     // LINE begin
     // 如果使用 LINE 登錄，請打開下面的配置
-    // api 'com.linecorp:linesdk:5.0.1'
+    // api 'com.linecorp.linesdk:linesdk:5.9.0'
     // LINE begin
 }
 

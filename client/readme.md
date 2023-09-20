@@ -23,7 +23,7 @@
 用于Facebook的应用事件。
 ### 3. 環境搭建
 #### 3.1 gradle版本及庫引用設置
-gradle版本為6.1.1（僅供參考），並且請在當前Project目錄下的build.gralde文件中加上如下配置：
+gradle版本為6.5（僅供參考），並且請在當前Project目錄下的build.gralde文件中加上如下配置：
 ```gradle
 buildscript {
     repositories {

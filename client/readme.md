@@ -1,6 +1,6 @@
 # EasyGame Android SDK
 ### 1. 簡介
-歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9503（androidx）。
+歡迎使用 EasyGames Andoird SDK，當前最新版本為4.8.9504（androidx）。
 
 ### 2. 參數
 #### 2.1 EASYGAMES_APP_ID
@@ -94,7 +94,7 @@ dependencies {
     // google base end
     
     // google billing begin
-    api 'com.android.billingclient:billing:4.1.0'
+    api 'com.android.billingclient:billing:5.2.1'
     // google billing end
     
     // google firebase begin
